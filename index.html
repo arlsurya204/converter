@@ -1,0 +1,1175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ASCII to Decimal Converter</title>
+<meta name="description" content="ASCII to Decimal is an online converter. It gets value in ASCII code and converts it to the Decimal number.">
+
+<meta property="og:title" content="ASCII to Decimal Converter" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://www.calculators.tech/imgs/calculators/thumb/Ascii-to-decimal.png" />
+<meta property="og:url" content="https://www.calculators.tech/ascii-to-decimal" />
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://www.calculators.tech/imgs/favicon.png" rel="icon" type="image/x-icon" />
+<link type="text/css" rel="stylesheet" href="https://www.calculators.tech/assets/lib/css/bootstrap.css?ver=2.4">
+<link type="text/css" rel="stylesheet" href="https://www.calculators.tech/assets/lib/css/style.css?ver=1.3.6">
+
+<script>
+  var base_url = "https://www.calculators.tech/";
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "8v88excv51");
+</script>
+<link rel="canonical" href="https://www.calculators.tech/ascii-to-decimal" /><link rel="alternate" hreflang="x-default" href="https://www.calculators.tech/ascii-to-decimal" /><link rel="alternate" hreflang="en" href="https://www.calculators.tech/ascii-to-decimal" />
+
+
+
+
+<style>
+		.gray-ress {
+			background: #e4e4e48c;
+			padding: 10px;
+		}
+
+		p,
+		#res_head {
+			font-size: 18px !important;
+			line-height: 35px !important;
+		}
+	</style>
+</head>
+<body id="dbody">
+<main class="">
+<style>
+	li.dropdown:hover>.dropdown-menu {
+		display: block;
+	}
+
+</style>
+<style>
+		#res_head{
+			text-align: left;
+		}
+		#rslt,#rslt_section ,.cal-box-shadow{
+			text-align: center;
+		}
+		.col.text-center.cal-box-shadow {
+			text-align: left;
+		}
+		#result h4{
+			text-align: center;
+		}
+		.ct-left{
+			text-align: left !important;
+		}
+		.col.text-desc.mt-1 {
+			text-align: left;
+		}
+		/* Result Box Padding  */
+		/* #rslt, #rslt_section, .cal-box-shadow{
+			padding: 10px 0px;
+		} */
+		.cal-box-shadow.text-l.p-4.position-sticky {
+			text-align: left;
+		}
+		div#result-description {
+			padding: 0px;
+		}span#result {
+			text-align: center !important
+		}
+		#btn-btt {
+			display: inline-block;
+			background-color: hsl(211deg 100% 50%);
+			width: 50px;
+			height: 50px;
+			text-align: center;
+			border-radius: 4px;
+			position: fixed;
+			bottom: 30px;
+			right: 30px;
+			transition: background-color .3s,
+				opacity .5s, visibility .5s;
+			opacity: 0;
+			visibility: hidden;
+			z-index: 1000;
+		}
+		#btn-btt:hover {
+			cursor: pointer;
+			background-color: #333;
+		}
+		#btn-btt:active {
+			background-color: #555;
+		}
+		#btn-btt.show {
+			opacity: 1;
+			visibility: visible;
+		}#showtop-result{
+			z-index: 33;
+		}
+
+</style>
+
+<input type="hidden" id="chkprem" value="ascii-to-decimal">
+
+<section class="container-fluid  header-banner" style="padding:20px 0px 20px 0px; margin-bottom:20px">
+<div class="mx-auto col-sm-7">
+<div class="row">
+<h1 class="col text-center text-light text-l text-capitalize">
+Ascii Converter </h1>
+
+</div>
+</div>
+</section>
+
+<section class="container-fluid calculator-view-section">
+<div class="row">
+<div class="col-md-10 mx-auto bg-white card">
+<div class="row">
+
+
+<div class="col-sm-4 calculator-form-section pt-4 pb-4">
+<form name="calcform">
+<div class="row">
+<div class="col-md-12">
+<label class="font-weight-500">ASCII Text</label>
+<textarea class="form-control mb-10" id="txt" name="txt" placeholder="ABC" style="height:120px;"></textarea>
+</div>
+<div class="col-sm-6 mt-3">
+<label class="font-weight-500">Seprator</label>
+<select id="delsel" name="delsel" class="form-control">
+<option selected="">None</option>
+<option>Space</option>
+<option>Comma</option>
+<option>User defined</option>
+</select>
+</div>
+<div class="col-sm-6 mt-4">
+<label></label>
+<input type="text" value=" " id="del" name="del" oninput="OnDelInput()" class="d-none form-control" readonly>
+</div>
+<div class="col-sm-12 switch-button-wrapper mt-3">
+<label class="mb-0 d-block font-weight-500 d-inline-flex labels">0x/0b prefix</label>
+<input class="switch-button" type="checkbox" id="prefix">
+ <label for="prefix" class="float-right"></label>
+</div>
+</div>
+<div class="w-100 text-center my-3" id="thx_before_button" style="height: 280px;">
+</div>
+<div class="text-center from-group mt-4">
+<button type="submit" id="calculate" class="btn scroll btn-primary preloader">
+<span id="submit-spinner">Calculate</span>
+<div class="loading loading-overlay">Loading&#8230;</div>
+</button>
+</div>
+</form>
+</div>
+
+<div id="result" class="col-md-5 bg-white pt-4 pb-4">
+<h4 class="text-center b-color-primary">RESULTS</h4>
+<div class="cal-box-shadow pb-2 pt-3 text-center">
+<div class="text-dark font-size-xs text-secondary p-2 py-4 shadow rounded" id="res_head">Fill the calculator form and click on Calculate button to get result here</div>
+<div class="d-none" id="rslt_section">
+<div class="border-bottom mb-2">
+<div class="row text-center mb-2">
+<div class="col-md-12">
+<span class="d-inline-block text-md">Total Values</span>
+<span class="d-block text-md text-primary distance" id="len">0</span>
+</div>
+</div>
+</div>
+<div class="border-bottom mb-2">
+<div class="row text-center mb-2">
+<div class="col-md-6 border-right border-right-0-sm border-right-0-md">
+<span class="d-inline-block text-md">Hex (bytes)</span>
+<span class="d-block text-md text-primary slope border-bottom-sm border-bottom-md" id="hex">0</span>
+</div>
+<div class="col-md-6">
+<span class="d-inline-block text-md">Binary</span>
+<span class="d-block text-md text-primary angle" id="bin">0</span>
+</div>
+</div>
+</div>
+<div class="">
+<div class="row text-center mb-2">
+<div class="col-md-6 border-right border-right-0-sm border-right-0-md">
+<span class="d-inline-block text-md">Decimal</span>
+<span class="d-block text-md text-primary delta_x border-bottom-sm border-bottom-md" id="dec">0</span>
+</div>
+<div class="col-md-6">
+<span class="d-inline-block text-md">Base64</span>
+<span class="d-block text-md text-primary delta_y" id="base64">0</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="slop-graph" class="text-center mt-4" style="display: none;">
+<canvas id="canvasId"></canvas>
+</div>
+<div class="w-100 text-center mt-3" id="thx_after_result" style="height: 280px;">
+</div>
+</div>
+
+</div>
+</div>
+<div class="col-md-10 mx-auto" id="removing"></div>
+</div>
+</section>
+
+<!-- <script src="https://www.calculators.tech/assets/lib/js/calculators/bignumber.min.js"></script> <div class="col-md-10 mx-auto getWidgetBox py-4"> -->
+<div class="row text-center h-100">
+
+
+
+</div>
+
+</div>
+
+
+
+
+<script type="text/javascript" src="https://www.calculators.tech/assets/lib/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://www.calculators.tech/assets/lib/js/calculators/ascii-to-decimal.js?ver=3.4.1.75"></script>
+
+
+<script>
+				$(".review-toggle").on("click", function() {
+					$(".review-form").toggleClass("d-none");
+					$(".reviews-boxes").toggleClass("d-none");
+					if (!$(".review-form").hasClass("d-none")) {
+						$('html, body').animate({
+							scrollTop: $(".review-form").offset().top
+						}, 10);
+					}
+
+
+				});
+			</script> 
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+<link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://www.calculators.tech/assets/lib/third-party-plugins/katex/katex.css">
+<script src="https://www.calculators.tech/assets/lib/js/katex.node.req.js?v=50"></script>
+
+
+
+<style>
+			.navlistOverlay {
+				display: none;
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				z-index: 8;
+			}
+
+			#topSearchBar,
+			#searchInput-banner {
+				z-index: 25 !important;
+			}
+		</style>
+<script>
+			$('#searchInput').on('click', function() {
+				$('.navlistOverlay').show();
+			});
+			$('#searchInput-banner').on('click', function() {
+				$('.navlistOverlay').show();
+			});
+			$('.navlistOverlay').on('click', function() {
+				$(this).hide();
+				$('#showtop-result').hide();
+				$('#showbanner-result').hide();
+			});
+			// Functions Search
+			function search_bar(search_id, search_result_class, search_container_id, know) {
+				if (!know) know = "";
+				showResults();
+
+				function showResults() {
+					var val = $(search_id).val();
+					$.ajax({
+						url: "https://www.calculators.tech/ajaxReqests/search_results",
+						type: "post",
+						data: {
+							val: val,
+							know: know
+						},
+						dataType: "json",
+						beforeSend: function() {},
+						success: function(resp) {
+							var html = '';
+							if (resp.fail) {
+
+								html = resp.fail;
+
+								$(search_result_class).show();
+								$(search_result_class).html(html);
+
+							} else {
+								$(search_result_class).html("");
+								$(search_result_class).hide();
+
+								if (val.length < 2) {
+									return false;
+								}
+
+								$(search_result_class).show();
+								if (know == '') {
+									$(search_result_class).show();
+									$.each(resp, function(index, tool) {
+										$("#searchSec").addClass("searched");
+										var href = tool.calculator_slug;
+										var re = new RegExp(val, "gi");
+										var toolName = tool.calculator_name.replace(re, "<strong>" + val + "</strong>");
+										$(search_result_class).append('<a class="d-block search-cal" href="https://www.calculators.tech/' + href + '"><span class="match px-2">' + toolName + '<span class="cat-name d-block">(' + tool.cat_name + ')</span></span></a>');
+									});
+
+									var li;
+									if (search_result_class == '.banner-search-result') {
+										$('#searchInput-banner').focus(function() {
+											$(search_result_class).show();
+										});
+										li = $('#showbanner-result a');
+									} else if (search_result_class == '.search-results') {
+										$('#searchInput').focus(function() {
+											$(search_result_class).show();
+										});
+										li = $('#showtop-result a');
+									}
+									var liSelected;
+									$(window).keydown(function(e) {
+										if (e.which === 40) {
+											if (liSelected) {
+												liSelected.removeClass('selected');
+												next = liSelected.next();
+												if (next.length > 0) {
+													liSelected = next.addClass('selected');
+												} else {
+													liSelected = li.eq(0).addClass('selected');
+												}
+											} else {
+												liSelected = li.eq(0).addClass('selected');
+											}
+										} else if (e.which === 38) {
+											if (liSelected) {
+												liSelected.removeClass('selected');
+												next = liSelected.prev();
+												if (next.length > 0) {
+													liSelected = next.addClass('selected');
+												} else {
+													liSelected = li.last().addClass('selected');
+												}
+											} else {
+												liSelected = li.last().addClass('selected');
+											}
+										}
+									});
+									$(window).keypress(function(e) {
+										if (e.which === 13) {
+											if (search_result_class == '.banner-search-result') {
+												$("#showbanner-result a.selected")[0].click();
+											} else if (search_result_class == '.search-results') {
+												$("#showtop-result a.selected")[0].click();
+											}
+										}
+									})
+								} else if (know == 'knowledge') {
+									$(search_result_class).show();
+									console.log(resp);
+									$.each(resp, function(index, tool) {
+										console.log(tool);
+										$("#search-banner-sec").addClass("searched");
+										var href = tool.resource_slug;
+										var re = new RegExp(val, "gi");
+										console.log(href);
+										console.log(re);
+										var toolName = tool.resource_title.replace(re, "<strong>" + val + "</strong>");
+										console.log(toolName);
+										$(search_result_class).append('<a class="d-block search-cal" href="https://www.calculators.tech/knowledge/' + href + '"><span class="match px-2">' + toolName + '<span class="cat-name d-block">(' + tool.cat_name + ')</span></span></a>');
+									});
+
+									var li;
+									if (search_result_class == '.banner-search-result') {
+										$('#searchInput-banner').focus(function() {
+											$(search_result_class).show();
+										});
+										li = $('#showbanner-result a');
+									} else if (search_result_class == '.search-results') {
+										$('#searchInput').focus(function() {
+											$(search_result_class).show();
+										});
+										li = $('#showtop-result a');
+									}
+									var liSelected;
+									$(window).keydown(function(e) {
+										if (e.which === 40) {
+											if (liSelected) {
+												liSelected.removeClass('selected');
+												next = liSelected.next();
+												if (next.length > 0) {
+													liSelected = next.addClass('selected');
+												} else {
+													liSelected = li.eq(0).addClass('selected');
+												}
+											} else {
+												liSelected = li.eq(0).addClass('selected');
+											}
+										} else if (e.which === 38) {
+											if (liSelected) {
+												liSelected.removeClass('selected');
+												next = liSelected.prev();
+												if (next.length > 0) {
+													liSelected = next.addClass('selected');
+												} else {
+													liSelected = li.last().addClass('selected');
+												}
+											} else {
+												liSelected = li.last().addClass('selected');
+											}
+										}
+									});
+									$(window).keypress(function(e) {
+										if (e.which === 13) {
+											if (search_result_class == '.banner-search-result') {
+												$("#showbanner-result a.selected")[0].click();
+											} else if (search_result_class == '.search-results') {
+												$("#showtop-result a.selected")[0].click();
+											}
+										}
+									})
+								}
+							}
+						}
+					});
+				}
+
+				function clearText(text) {
+					myStr = text.toLowerCase();
+					myStr = myStr.replace(/ /g, "");
+					myStr = myStr.replace(/[^a-zA-Z0-9]+/g, "");
+					myStr = myStr.replace(/(\s)+/g, "");
+					return myStr;
+				}
+				$(document).mouseup(function(e) {
+					var container = $(search_container_id);
+
+					if (!container.is(e.target) // if the target of the click isn't the container...
+						&&
+						container.has(e.target).length === 0) // ... nor a descendant of the container
+					{
+						$("#searchSec").removeClass("searched");
+						$(search_result_class).hide();
+					}
+				});
+			}
+
+			// Functions Search
+			function search_bar_2(search_id, search_result_class, search_container_id, know = "") {
+				$('.navlistOverlay').show();
+				var x = [{"calculator_name":"Pregnancy Calculator","cat_name":"Health","calculator_slug":"pregnancy-calculator","calculator_id":"1","tag_name":"Pregnancy Calculator"},{"calculator_name":"BMI Calculator","cat_name":"Fitness","calculator_slug":"bmi-calculator","calculator_id":"2","tag_name":"BMI Calculator"},{"calculator_name":"Macro Calculator","cat_name":"Fitness","calculator_slug":"macro-calculator","calculator_id":"3","tag_name":"Macro Calculator"},{"calculator_name":"BMR Calculator","cat_name":"Fitness","calculator_slug":"bmr-calculator","calculator_id":"4","tag_name":"BMR Calculator"},{"calculator_name":"Lean Body Mass Calculator","cat_name":"Fitness","calculator_slug":"lbm-calculator","calculator_id":"5","tag_name":"LBM Calculator"},{"calculator_name":"TDEE Calculator","cat_name":"Fitness","calculator_slug":"tdee-calculator","calculator_id":"6","tag_name":"TDEE Calculator"},{"calculator_name":"BSA Calculator","cat_name":"Health","calculator_slug":"bsa-calculator","calculator_id":"8","tag_name":"BSA Calculator"},{"calculator_name":"ASCVD Risk Calculator","cat_name":"Health","calculator_slug":"ascvd-risk-calculator","calculator_id":"14","tag_name":"Cardiovascular Risk Calculator"},{"calculator_name":"RMR Calculator","cat_name":"Fitness","calculator_slug":"rmr-calculator","calculator_id":"15","tag_name":"rmr calculator"},{"calculator_name":"Calorie Calculator","cat_name":"Fitness","calculator_slug":"calorie-calculator","calculator_id":"16","tag_name":"Calorie Calculator"},{"calculator_name":"ABCD\u00b2 Score for TIA","cat_name":"Health","calculator_slug":"abcd2-score-for-tia","calculator_id":"21","tag_name":"Abcd Score For Tia Calculator"},{"calculator_name":"ALC Calculator","cat_name":"Health","calculator_slug":"alc-calculator","calculator_id":"23","tag_name":"Alc Calculator"},{"calculator_name":"ANC Calculator","cat_name":"Health","calculator_slug":"anc-calculator","calculator_id":"24","tag_name":"Anc Calculator"},{"calculator_name":"Aims65 Calculator","cat_name":"Health","calculator_slug":"aims65-calculator","calculator_id":"27","tag_name":"Aims65 Calculator"},{"calculator_name":"ASPECTS Score","cat_name":"Health","calculator_slug":"aspect-score","calculator_id":"28","tag_name":"Aspects Calculator"},{"calculator_name":"Alvarado Score","cat_name":"Health","calculator_slug":"alvarado-score-for-appendicitis","calculator_id":"29","tag_name":"Alvarado Calculator"},{"calculator_name":"Barthel Index","cat_name":"Health","calculator_slug":"adl-calculator","calculator_id":"36","tag_name":"Adl Calculator"},{"calculator_name":"Bicarbonate Deficit","cat_name":"Health","calculator_slug":"bicarbonate-deficit-calculator","calculator_id":"37","tag_name":"Bicarbonate Deficit Calculator"},{"calculator_name":"Bmi and Bsa Calculator","cat_name":"Health","calculator_slug":"bmi-and-bsa-calculator","calculator_id":"39","tag_name":"Bmi And Bsa Calculator"},{"calculator_name":"corrected calcium calculator","cat_name":"Health","calculator_slug":"calcium-correction-calculator","calculator_id":"40","tag_name":"Calcium Correction Calculator"},{"calculator_name":"QTC calculator","cat_name":"Health","calculator_slug":"qtc-calculator","calculator_id":"45","tag_name":"qtc calculator"},{"calculator_name":"Age Calculator","cat_name":"Informative","calculator_slug":"age-calculator","calculator_id":"10","tag_name":"Age Calculator"},{"calculator_name":"GPA Calculator","cat_name":"Informative","calculator_slug":"gpa-calculator","calculator_id":"11","tag_name":"GPA Calculator"},{"calculator_name":"Ohms Law Calculator","cat_name":"Physics","calculator_slug":"ohms-law-calculator","calculator_id":"13","tag_name":"OhmsLaw Calculator"},{"calculator_name":"BMI Calculator","cat_name":"Fitness","calculator_slug":"bmi-calculator","calculator_id":"2","tag_name":"Body mass index"},{"calculator_name":"Creatinine Clearance Calculator","cat_name":"Health","calculator_slug":"creatinine-clearance-calculator","calculator_id":"46","tag_name":"Cockcroft Gault Equation"},{"calculator_name":"Creatinine Clearance Calculator","cat_name":"Health","calculator_slug":"creatinine-clearance-calculator","calculator_id":"46","tag_name":"cc calculator"},{"calculator_name":"EGSYS calculator","cat_name":"Health","calculator_slug":"egsys-calculator","calculator_id":"48","tag_name":"Egsys calculator"},{"calculator_name":"Ending Inventory Calculator","cat_name":"Finance","calculator_slug":"ending-inventory-calculator","calculator_id":"49","tag_name":"Ending Inventory Calculator"},{"calculator_name":"LTV Calculator","cat_name":"Finance","calculator_slug":"ltv-calculator","calculator_id":"50","tag_name":"LTV Calculator"},{"calculator_name":"LTV Calculator","cat_name":"Finance","calculator_slug":"ltv-calculator","calculator_id":"50","tag_name":"Loan to Value"},{"calculator_name":"LTV Calculator","cat_name":"Finance","calculator_slug":"ltv-calculator","calculator_id":"50","tag_name":"LTV Calculator - Loan to Value"},{"calculator_name":"Debt to Asset Ratio","cat_name":"Finance","calculator_slug":"debt-to-asset-ratio-calculator","calculator_id":"51","tag_name":"Debt to asset ratio calculator"},{"calculator_name":"EBIT Calculator","cat_name":"Finance","calculator_slug":"ebit-calculator","calculator_id":"53","tag_name":"ebit calculator"},{"calculator_name":"EBITDA Calculator","cat_name":"Finance","calculator_slug":"ebitda-calculator","calculator_id":"54","tag_name":"Ebitda calculator"},{"calculator_name":"Earnings Per Share Calculator","cat_name":"Finance","calculator_slug":"earnings-per-share-calculator","calculator_id":"52","tag_name":"Earnings Per Share Calculator"},{"calculator_name":"GST Calculator","cat_name":"Finance","calculator_slug":"gst-calculator","calculator_id":"55","tag_name":"Gst calculator"},{"calculator_name":"Pre and Post Money Valuation","cat_name":"Finance","calculator_slug":"pre-and-post-money-valuation-calculator","calculator_id":"56","tag_name":"Pre-Money and Post-Money Valuation Calculator"},{"calculator_name":"Return On Assets Calculator","cat_name":"Finance","calculator_slug":"return-on-assets-calculator","calculator_id":"57","tag_name":"Return On Assets Calculator"},{"calculator_name":"ROCE Calculator","cat_name":"Finance","calculator_slug":"return-on-employed-capital-calculator","calculator_id":"58","tag_name":"Return On Employed Capital Calculator"},{"calculator_name":"Sales tax calculator","cat_name":"Finance","calculator_slug":"sales-tax-calculator","calculator_id":"59","tag_name":"Sales tax calculator"},{"calculator_name":"Triple Discount Calculator","cat_name":"Finance","calculator_slug":"triple-discount-calculator","calculator_id":"60","tag_name":"Triple Discount Calculator"},{"calculator_name":"VAT Calculator","cat_name":"Finance","calculator_slug":"vat-calculator","calculator_id":"61","tag_name":"VAT Calculator"},{"calculator_name":"Ideal Weight Calculator","cat_name":"Fitness","calculator_slug":"ideal-weight-calculator","calculator_id":"9","tag_name":"Ideal Body Weight Calculator"},{"calculator_name":"Ideal Weight Calculator","cat_name":"Fitness","calculator_slug":"ideal-weight-calculator","calculator_id":"9","tag_name":"IBW calculator"},{"calculator_name":"Kinetic Energy Calculator","cat_name":"Physics","calculator_slug":"kinetic-energy-calculator","calculator_id":"63","tag_name":"Kinetic Energy Calculator"},{"calculator_name":"Kinetic Energy Calculator","cat_name":"Physics","calculator_slug":"kinetic-energy-calculator","calculator_id":"63","tag_name":"ke Calculator"},{"calculator_name":"Velocity Calculator","cat_name":"Physics","calculator_slug":"velocity-calculator","calculator_id":"64","tag_name":"velocity calculator"},{"calculator_name":"Shoe Size Converter","cat_name":"Informative","calculator_slug":"shoe-size-converter","calculator_id":"65","tag_name":"Shoe Size Convertor"},{"calculator_name":"Speed Conversion","cat_name":"Conversion","calculator_slug":"speed-convertor","calculator_id":"68","tag_name":"Speed Convertor"},{"calculator_name":"CPM Calculator","cat_name":"Informative","calculator_slug":"cpm-calculator","calculator_id":"70","tag_name":"Cpm Calculator"},{"calculator_name":"CPM Calculator","cat_name":"Informative","calculator_slug":"cpm-calculator","calculator_id":"70","tag_name":"cost per thousand calculator"},{"calculator_name":"CPC Calculator","cat_name":"Informative","calculator_slug":"cpc-calculator","calculator_id":"71","tag_name":"cpc calculator"},{"calculator_name":"CPC Calculator","cat_name":"Informative","calculator_slug":"cpc-calculator","calculator_id":"71","tag_name":"cost per click calculator"},{"calculator_name":"Total Body Water Calculator","cat_name":"Health","calculator_slug":"total-body-water-calculator","calculator_id":"72","tag_name":"Total body water calculator"},{"calculator_name":"Enterprise Value Calculator","cat_name":"Finance","calculator_slug":"enterprise-value-calculator","calculator_id":"73","tag_name":"enterprise value calculator"},{"calculator_name":"Market Capitalization Calculator","cat_name":"Finance","calculator_slug":"market-capitalization-calculator","calculator_id":"74","tag_name":"market capitalization calculator"},{"calculator_name":"Army Body Fat Calculator","cat_name":"Fitness","calculator_slug":"army-body-fat-calculator","calculator_id":"75","tag_name":"Army body fat calculator"},{"calculator_name":"Army Body Fat Calculator","cat_name":"Fitness","calculator_slug":"army-body-fat-calculator","calculator_id":"75","tag_name":"fat calculator"},{"calculator_name":"Navy Body Fat Calculator","cat_name":"Fitness","calculator_slug":"navy-body-fat-calculator","calculator_id":"76","tag_name":"Navy Body Fat Calculator"},{"calculator_name":"Mcardle Bmr Calculator","cat_name":"Fitness","calculator_slug":"bmr-katch-mcardle-calculator","calculator_id":"78","tag_name":"Katch-McArdle Calculator"},{"calculator_name":"Mcardle Bmr Calculator","cat_name":"Fitness","calculator_slug":"bmr-katch-mcardle-calculator","calculator_id":"78","tag_name":"Bmr Katch Mcardle Calculator"},{"calculator_name":"max heart rate calculator","cat_name":"Health","calculator_slug":"max-heart-rate-calculator","calculator_id":"79","tag_name":"Max heart rate calculator"},{"calculator_name":"max heart rate calculator","cat_name":"Health","calculator_slug":"max-heart-rate-calculator","calculator_id":"79","tag_name":"mhr calculator"},{"calculator_name":"Reticulocyte Index","cat_name":"Health","calculator_slug":"reticulocyte-count-calculator","calculator_id":"80","tag_name":"Absolute Reticulocyte Count & Reticulocyte Index"},{"calculator_name":"Reticulocyte Index","cat_name":"Health","calculator_slug":"reticulocyte-count-calculator","calculator_id":"80","tag_name":"Reticulocyte Index calculator"},{"calculator_name":"Reticulocyte Index","cat_name":"Health","calculator_slug":"reticulocyte-count-calculator","calculator_id":"80","tag_name":"Absolute Reticulocyte Count calculator"},{"calculator_name":"Sig Fig Calculator","cat_name":"Math","calculator_slug":"sig-fig-calculator","calculator_id":"83","tag_name":"Significant Figures Calculator"},{"calculator_name":"Average Calculator","cat_name":"Math","calculator_slug":"average-calculator","calculator_id":"84","tag_name":"Average Calculator"},{"calculator_name":"Paypal Fee Calculator","cat_name":"Informative","calculator_slug":"paypal-fee-calculator","calculator_id":"85","tag_name":"Paypal fee calculator"},{"calculator_name":"Slope Calculator","cat_name":"Math","calculator_slug":"slope-calculator","calculator_id":"87","tag_name":"Slope calculator"},{"calculator_name":"Circumference Calculator","cat_name":"Math","calculator_slug":"circumference-calculator","calculator_id":"88","tag_name":"circumference calculator"},{"calculator_name":"Percentage Increase Calculator","cat_name":"Math","calculator_slug":"percentage-increase-calculator","calculator_id":"89","tag_name":"Percentage increase calculator"},{"calculator_name":"Standard Deviation Calculator","cat_name":"Math","calculator_slug":"standard-deviation-calculator","calculator_id":"90","tag_name":"Standard deviation calculator"},{"calculator_name":"Margin Calculator","cat_name":"Finance","calculator_slug":"margin-calculator","calculator_id":"91","tag_name":"Margin calculator"},{"calculator_name":"ERP Calculator","cat_name":"Informative","calculator_slug":"erp-calculator","calculator_id":"92","tag_name":"Erp calculator"},{"calculator_name":"ERP Calculator","cat_name":"Informative","calculator_slug":"erp-calculator","calculator_id":"92","tag_name":"Effective Radiated Power (ERP) Calculator"},{"calculator_name":"EER Calculator","cat_name":"Fitness","calculator_slug":"eer-calculator","calculator_id":"93","tag_name":"eer calculator"},{"calculator_name":"ldl calculator","cat_name":"Health","calculator_slug":"ldl-calculator","calculator_id":"94","tag_name":"Ldl calculator"},{"calculator_name":"Cholesterol Calculator","cat_name":"Health","calculator_slug":"cholesterol-calculator","calculator_id":"95","tag_name":"Cholesterol calculator"},{"calculator_name":"heart rate calculator","cat_name":"Health","calculator_slug":"heart-rate-calculator","calculator_id":"77","tag_name":"heart rate calculator"},{"calculator_name":"Stamp Duty Calculator Australia","cat_name":"Real Estate","calculator_slug":"stamp-duty-calculator-australia","calculator_id":"96","tag_name":"Stamp Duty Australia Calculator"},{"calculator_name":"yugioh calculator","cat_name":"Informative","calculator_slug":"yugioh-calculator","calculator_id":"97","tag_name":"Yugioh calculator"},{"calculator_name":"Price Elasticity of Demand Calculator","cat_name":"Finance","calculator_slug":"price-elasticity-of-demand-calculator","calculator_id":"98","tag_name":"price elasticity of demand calculator"},{"calculator_name":"Poisson Distribution Calculator","cat_name":"Math","calculator_slug":"poisson-distribution-calculator","calculator_id":"99","tag_name":"Poisson distribution calculator"},{"calculator_name":"Factorial Calculator","cat_name":"Math","calculator_slug":"factorial-calculator","calculator_id":"100","tag_name":"Factorial calculator"},{"calculator_name":"Meal Calorie Calculator","cat_name":"Informative","calculator_slug":"meal-calorie-calculator","calculator_id":"101","tag_name":"Meal calorie calculator"},{"calculator_name":"Trapezoid Area Calculator","cat_name":"Math","calculator_slug":"trapezoid-area-calculator","calculator_id":"102","tag_name":"trapezoid area calculator"},{"calculator_name":"Covariance Calculator","cat_name":"Math","calculator_slug":"covariance-calculator","calculator_id":"103","tag_name":"covariance calculator"},{"calculator_name":"ERA Calculator","cat_name":"Informative","calculator_slug":"era-calculator","calculator_id":"104","tag_name":"era calculator"},{"calculator_name":"Midpoint Calculator","cat_name":"Math","calculator_slug":"midpoint-calculator","calculator_id":"105","tag_name":"Midpoint calculator"},{"calculator_name":"cross Product Calculator","cat_name":"Math","calculator_slug":"cross-product-calculator","calculator_id":"106","tag_name":"cross product calculator"},{"calculator_name":"ASCVD Risk Calculator","cat_name":"Health","calculator_slug":"ascvd-risk-calculator","calculator_id":"14","tag_name":"ASCVD Risk Calculator"},{"calculator_name":"Pythagorean Theorem Calculator","cat_name":"Math","calculator_slug":"pythagorean-theorem-calculator","calculator_id":"107","tag_name":"Pythagorean theorem calculator"},{"calculator_name":"FFMI Calculator","cat_name":"Fitness","calculator_slug":"ffmi-calculator","calculator_id":"108","tag_name":"Fat free mass index calculator"},{"calculator_name":"FFMI Calculator","cat_name":"Fitness","calculator_slug":"ffmi-calculator","calculator_id":"108","tag_name":"ffmi calculator"},{"calculator_name":"Modulo Calculator","cat_name":"Math","calculator_slug":"modulo-calculator","calculator_id":"109","tag_name":"Modulo calculator"},{"calculator_name":"Remainder Calculator","cat_name":"Math","calculator_slug":"remainder-calculator","calculator_id":"110","tag_name":"Remainder calculator"},{"calculator_name":"Percentage Calculator","cat_name":"Math","calculator_slug":"percentage-calculator","calculator_id":"111","tag_name":"Percentage calculator"},{"calculator_name":"BMR Calculator","cat_name":"Fitness","calculator_slug":"bmr-calculator","calculator_id":"4","tag_name":"Basal metabolic rate calculator"},{"calculator_name":"Lean Body Mass Calculator","cat_name":"Fitness","calculator_slug":"lbm-calculator","calculator_id":"5","tag_name":"Lean Body Mass Calculator"},{"calculator_name":"TDEE Calculator","cat_name":"Fitness","calculator_slug":"tdee-calculator","calculator_id":"6","tag_name":"Total Daily Energy Expenditure calculator"},{"calculator_name":"Weight Loss Calculator","cat_name":"Fitness","calculator_slug":"weight-loss-calculator","calculator_id":"7","tag_name":"Weight Loss Calculator"},{"calculator_name":"BSA Calculator","cat_name":"Health","calculator_slug":"bsa-calculator","calculator_id":"8","tag_name":"body surface area calculator"},{"calculator_name":"GPA Calculator","cat_name":"Informative","calculator_slug":"gpa-calculator","calculator_id":"11","tag_name":"Grade Point Average calculator"},{"calculator_name":"Stamp Duty Calculator","cat_name":"Real Estate","calculator_slug":"stamp-duty-calculator","calculator_id":"12","tag_name":"Stamp Duty Calculator"},{"calculator_name":"Stamp Duty Calculator","cat_name":"Real Estate","calculator_slug":"stamp-duty-calculator","calculator_id":"12","tag_name":"SD Calculator\t"},{"calculator_name":"RMR Calculator","cat_name":"Fitness","calculator_slug":"rmr-calculator","calculator_id":"15","tag_name":"Resting Metabolic Rate Calculator"},{"calculator_name":"4AT score for Delirium Screening","cat_name":"Health","calculator_slug":"delirium-screening","calculator_id":"18","tag_name":"4AT score for Delirium Screening calculator"},{"calculator_name":"4AT score for Delirium Screening","cat_name":"Health","calculator_slug":"delirium-screening","calculator_id":"18","tag_name":"Delirium Screening calculator"},{"calculator_name":"6 Minute Walk Test","cat_name":"Health","calculator_slug":"6-minute-walk-test","calculator_id":"19","tag_name":"6 Minute Walk Distance Calculator"},{"calculator_name":"6 Minute Walk Test","cat_name":"Health","calculator_slug":"6-minute-walk-test","calculator_id":"19","tag_name":"6 MWD Calculator"},{"calculator_name":"Abbreviated Mental Test","cat_name":"Health","calculator_slug":"abbreviated-mental-test-4","calculator_id":"20","tag_name":"Abbreviated Mental Test 4 Calculator"},{"calculator_name":"Abbreviated Mental Test","cat_name":"Health","calculator_slug":"abbreviated-mental-test-4","calculator_id":"20","tag_name":"AMTS Calculator"},{"calculator_name":"ABC Score for Massive Transfusion","cat_name":"Health","calculator_slug":"abc-score-for-massive-transfusion","calculator_id":"22","tag_name":"ABC Score for Massive Transfusion calculator"},{"calculator_name":"ALC Calculator","cat_name":"Health","calculator_slug":"alc-calculator","calculator_id":"23","tag_name":"Absolute Lymphocyte Count calculator"},{"calculator_name":"ANC Calculator","cat_name":"Health","calculator_slug":"anc-calculator","calculator_id":"24","tag_name":"Absolute Neutrophil Count calculator"},{"calculator_name":"Acute Gout Calculator","cat_name":"Health","calculator_slug":"acute-gout-calculator","calculator_id":"25","tag_name":"Acute Gout Calculator"},{"calculator_name":"Acute Gout Calculator","cat_name":"Health","calculator_slug":"acute-gout-calculator","calculator_id":"25","tag_name":"AG calculator"},{"calculator_name":"ADHD Test","cat_name":"Health","calculator_slug":"adhd-calculator","calculator_id":"26","tag_name":"ADHD Medication Calculator"},{"calculator_name":"ASPECTS Score","cat_name":"Health","calculator_slug":"aspect-score","calculator_id":"28","tag_name":"Alberta Stroke Program Early CT Score calculator"},{"calculator_name":"Alvarado Score","cat_name":"Health","calculator_slug":"alvarado-score-for-appendicitis","calculator_id":"29","tag_name":"Alvarado Score for Acute Appendicitis calculator"},{"calculator_name":"Asthma Predictive Index","cat_name":"Health","calculator_slug":"asthma-calculator","calculator_id":"30","tag_name":"Asthma Predictive Index calculator"},{"calculator_name":"Asthma Predictive Index","cat_name":"Health","calculator_slug":"asthma-calculator","calculator_id":"30","tag_name":"API calculator"},{"calculator_name":"AUDIT-C Score","cat_name":"Health","calculator_slug":"audit-c-calculator","calculator_id":"33","tag_name":"AUDIT C For Alcohol Use Calculator"},{"calculator_name":"bacterial meningitis score","cat_name":"Health","calculator_slug":"bacterial-meningitis-calculator","calculator_id":"34","tag_name":"Bacterial Meningitis Score Calculator"},{"calculator_name":"bacterial meningitis score","cat_name":"Health","calculator_slug":"bacterial-meningitis-calculator","calculator_id":"34","tag_name":"BMS calculator"},{"calculator_name":"Bap 65 Score","cat_name":"Health","calculator_slug":"bap-65-calculator","calculator_id":"35","tag_name":"Bap 65 Score calculator"},{"calculator_name":"Barthel Index","cat_name":"Health","calculator_slug":"adl-calculator","calculator_id":"36","tag_name":"Barthel Index for Activities of Daily Living calculator"},{"calculator_name":"Bisap Score","cat_name":"Health","calculator_slug":"bisap-calculator","calculator_id":"38","tag_name":"Bisap Score calculator"},{"calculator_name":"Centor Score","cat_name":"Health","calculator_slug":"centor-score-calculator","calculator_id":"41","tag_name":"Centor Score (Modified \/ McIsaac) calculator"},{"calculator_name":"CHA\u2082DS\u2082-VASc Score","cat_name":"Health","calculator_slug":"chads-calculator","calculator_id":"42","tag_name":"CHADS-VASc Score for Atrial Fibrillation Stroke Risk calculator"},{"calculator_name":"Chads\u2082 score","cat_name":"Health","calculator_slug":"chads2-calculator","calculator_id":"43","tag_name":"CHADS Score for Atrial Fibrillation Stroke Risk calculator"},{"calculator_name":"Child Pugh Score","cat_name":"Health","calculator_slug":"child-pugh-calculator","calculator_id":"44","tag_name":"Child-Pugh Score for Cirrhosis Mortality calculator"},{"calculator_name":"QTC calculator","cat_name":"Health","calculator_slug":"qtc-calculator","calculator_id":"45","tag_name":"Corrected Qt Interval (QTc) calculator"},{"calculator_name":"CURB-65 Score","cat_name":"Health","calculator_slug":"curb-65-calculator","calculator_id":"47","tag_name":"CURB-65 Score for Pneumonia Severity Calculator"},{"calculator_name":"EGSYS calculator","cat_name":"Health","calculator_slug":"egsys-calculator","calculator_id":"48","tag_name":"EGSYS (Evaluation of Guidelines in SYncope Study) Score for Syncope calculator"},{"calculator_name":"LTV Calculator","cat_name":"Finance","calculator_slug":"ltv-calculator","calculator_id":"50","tag_name":"Loan to Value calculator"},{"calculator_name":"Earnings Per Share Calculator","cat_name":"Finance","calculator_slug":"earnings-per-share-calculator","calculator_id":"52","tag_name":"EPS Calculator"},{"calculator_name":"GST Calculator","cat_name":"Finance","calculator_slug":"gst-calculator","calculator_id":"55","tag_name":"Goods and Services Tax Calculator"},{"calculator_name":"GST Calculator","cat_name":"Finance","calculator_slug":"gst-calculator","calculator_id":"55","tag_name":"general sales tax calculator"},{"calculator_name":"ROCE Calculator","cat_name":"Finance","calculator_slug":"return-on-employed-capital-calculator","calculator_id":"58","tag_name":"ROCE Calculator"},{"calculator_name":"Speed Conversion","cat_name":"Conversion","calculator_slug":"speed-convertor","calculator_id":"68","tag_name":"speed conversion calculator"},{"calculator_name":"Probability Calculator","cat_name":"Math","calculator_slug":"probability-calculator","calculator_id":"69","tag_name":"Probability Calculator"},{"calculator_name":"Total Body Water Calculator","cat_name":"Health","calculator_slug":"total-body-water-calculator","calculator_id":"72","tag_name":"TBW Calculator"},{"calculator_name":"Navy Body Fat Calculator","cat_name":"Fitness","calculator_slug":"navy-body-fat-calculator","calculator_id":"76","tag_name":"fat calculator"},{"calculator_name":"heart rate calculator","cat_name":"Health","calculator_slug":"heart-rate-calculator","calculator_id":"77","tag_name":"HR calculator"},{"calculator_name":"EER Calculator","cat_name":"Fitness","calculator_slug":"eer-calculator","calculator_id":"93","tag_name":"Estimated Energy Requirement calculator"},{"calculator_name":"ldl calculator","cat_name":"Health","calculator_slug":"ldl-calculator","calculator_id":"94","tag_name":"HDL cholesterol and triglycerides calculator"},{"calculator_name":"Poisson Distribution Calculator","cat_name":"Math","calculator_slug":"poisson-distribution-calculator","calculator_id":"99","tag_name":"PD calculator"},{"calculator_name":"ERA Calculator","cat_name":"Informative","calculator_slug":"era-calculator","calculator_id":"104","tag_name":"earned run average calculator"},{"calculator_name":"4Ts Score for Heparin-Induced Thrombocytopenia","cat_name":"Health","calculator_slug":"4t-score-heparin-induced-thrombocytopenia","calculator_id":"112","tag_name":"4Ts Score for Heparin-Induced Thrombocytopenia calculator"},{"calculator_name":"Discount Calculator","cat_name":"Finance","calculator_slug":"discount-calculator","calculator_id":"86","tag_name":"discount calculator"},{"calculator_name":"Creatinine Clearance Calculator","cat_name":"Health","calculator_slug":"creatinine-clearance-calculator","calculator_id":"46","tag_name":"Creatinine Clearance Calculator "},{"calculator_name":"Creatinine Clearance Calculator","cat_name":"Health","calculator_slug":"creatinine-clearance-calculator","calculator_id":"46","tag_name":"CRCL Calculator"},{"calculator_name":"Pregnancy Calculator","cat_name":"Health","calculator_slug":"pregnancy-calculator","calculator_id":"1","tag_name":"Due Date Calculator"},{"calculator_name":"Macro Calculator","cat_name":"Fitness","calculator_slug":"macro-calculator","calculator_id":"3","tag_name":"weight loss planner"},{"calculator_name":"Weight Loss Calculator","cat_name":"Fitness","calculator_slug":"weight-loss-calculator","calculator_id":"7","tag_name":"weight loss planner"},{"calculator_name":"Calorie Calculator","cat_name":"Fitness","calculator_slug":"calorie-calculator","calculator_id":"16","tag_name":"how much calorie should I take"},{"calculator_name":"Calorie Calculator","cat_name":"Fitness","calculator_slug":"calorie-calculator","calculator_id":"16","tag_name":"how many calories"},{"calculator_name":"Annuity Depreciation Calculator","cat_name":"Finance","calculator_slug":"annuity-depreciation-calculator","calculator_id":"132","tag_name":"annuity depreciation calculator"},{"calculator_name":"Annuity Depreciation Calculator","cat_name":"Finance","calculator_slug":"annuity-depreciation-calculator","calculator_id":"132","tag_name":"depreciation calculator"},{"calculator_name":"Antilog Calculator","cat_name":"Math","calculator_slug":"antilog-calculator","calculator_id":"127","tag_name":"antilog calculator"},{"calculator_name":"Antilog Calculator","cat_name":"Math","calculator_slug":"antilog-calculator","calculator_id":"127","tag_name":"log calculator"},{"calculator_name":"Arc Length Calculator","cat_name":"Math","calculator_slug":"arc-length-calculator","calculator_id":"121","tag_name":"arc length calculator"},{"calculator_name":"Arcsin Calculator","cat_name":"Math","calculator_slug":"arcsin-calculator","calculator_id":"129","tag_name":"arcsin calculator"},{"calculator_name":"Arcsin Calculator","cat_name":"Math","calculator_slug":"arcsin-calculator","calculator_id":"129","tag_name":"sin calculator"},{"calculator_name":"Arc Length Calculator","cat_name":"Math","calculator_slug":"arc-length-calculator","calculator_id":"121","tag_name":"length calculator"},{"calculator_name":"Area Calculator","cat_name":"Math","calculator_slug":"area-calculator","calculator_id":"120","tag_name":"area calculator"},{"calculator_name":"Arithmetic Sequence Calculator","cat_name":"Math","calculator_slug":"arithmetic-sequence-calculator","calculator_id":"128","tag_name":"arithmetic sequence calculator"},{"calculator_name":"Binomial Theorem Calculator","cat_name":"Math","calculator_slug":"binomial-theorem-calculator","calculator_id":"133","tag_name":"binomial theorem calculator"},{"calculator_name":"Blood type calculator","cat_name":"Health","calculator_slug":"blood-type-calculator","calculator_id":"134","tag_name":"Blood type calculator"},{"calculator_name":"Board Foot Calculator","cat_name":"Informative","calculator_slug":"board-foot-calculator","calculator_id":"135","tag_name":"board foot calculator"},{"calculator_name":"Car Depreciation Calculator","cat_name":"Finance","calculator_slug":"car-depreciation-calculator","calculator_id":"136","tag_name":"car depreciation calculator"},{"calculator_name":"Centroid Triangle Calculator","cat_name":"Informative","calculator_slug":"centroid-triangle-calculator","calculator_id":"137","tag_name":"centroid triangle calculator"},{"calculator_name":"Circle Area Calculator","cat_name":"Math","calculator_slug":"circle-area-calculator","calculator_id":"115","tag_name":"circle area calculator"},{"calculator_name":"Cone Volume Calculator","cat_name":"Math","calculator_slug":"cone-volume-calculator","calculator_id":"124","tag_name":"cone volume calculator"},{"calculator_name":"Confidence Interval Calculator","cat_name":"Math","calculator_slug":"confidence-interval-calculator","calculator_id":"122","tag_name":"confidence interval calculator"},{"calculator_name":"CBM Calculator","cat_name":"Math","calculator_slug":"cubic-meter-calculator","calculator_id":"119","tag_name":"cubic meter calculator"},{"calculator_name":"CURB-65 Score","cat_name":"Health","calculator_slug":"curb-65-calculator","calculator_id":"47","tag_name":"curb 65 calculator "},{"calculator_name":"Cylinder Volume Calculator","cat_name":"Informative","calculator_slug":"cylinder-volume-calculator","calculator_id":"138","tag_name":"cylinder volume calculator"},{"calculator_name":"depreciation calculators","cat_name":"Finance","calculator_slug":"depreciation-calculators","calculator_id":"139","tag_name":"depreciation calculators"},{"calculator_name":"Depreciation Comparison Calculator","cat_name":"Finance","calculator_slug":"depreciation-comparison-calculator","calculator_id":"140","tag_name":"depreciation comparison calculator"},{"calculator_name":"Ellipse Area Calculator","cat_name":"Math","calculator_slug":"ellipse-area-calculator","calculator_id":"117","tag_name":"ellipse area calculator"},{"calculator_name":"Fifo Lifo Calculator","cat_name":"Finance","calculator_slug":"fifo-lifo-calculator","calculator_id":"141","tag_name":"fifo lifo calculator"},{"calculator_name":"GCD Calculator","cat_name":"Math","calculator_slug":"gcd-calculator","calculator_id":"142","tag_name":"gcd calculator"},{"calculator_name":"GCD Calculator","cat_name":"Math","calculator_slug":"gcd-calculator","calculator_id":"142","tag_name":"Greatest Common Factor Calculator"},{"calculator_name":"Geriatric Depression Scale","cat_name":"Health","calculator_slug":"geriatric-depression-scale","calculator_id":"143","tag_name":"geriatric depression scale"},{"calculator_name":"Hypergeometric Calculator","cat_name":"Informative","calculator_slug":"hypergeometric-calculator","calculator_id":"144","tag_name":"hypergeometric calculator"},{"calculator_name":"LCM Calculator","cat_name":"Math","calculator_slug":"lcm-calculator","calculator_id":"145","tag_name":"lcm calculator"},{"calculator_name":"LCM Calculator","cat_name":"Math","calculator_slug":"lcm-calculator","calculator_id":"145","tag_name":"Least Common Multiple calculator"},{"calculator_name":"Log Calculator","cat_name":"Math","calculator_slug":"log-calculator","calculator_id":"146","tag_name":"log calculator"},{"calculator_name":"Long Addition Calculator","cat_name":"Math","calculator_slug":"long-addition-calculator","calculator_id":"147","tag_name":"long addition calculator"},{"calculator_name":"Macrs Depreciation Calculator","cat_name":"Finance","calculator_slug":"macrs-depreciation-calculator","calculator_id":"148","tag_name":"macrs depreciation calculator"},{"calculator_name":"Margin Of Error Calculator","cat_name":"Finance","calculator_slug":"margin-of-error-calculator","calculator_id":"149","tag_name":"margin of error calculator"},{"calculator_name":"Combination Calculator","cat_name":"Math","calculator_slug":"combination-calculator","calculator_id":"150","tag_name":"ncr calculator"},{"calculator_name":"Parallelogram Area Calculator","cat_name":"Math","calculator_slug":"parallelogram-area-calculator","calculator_id":"118","tag_name":"parallelogram area calculator"},{"calculator_name":"Parallelogram Area Calculator","cat_name":"Math","calculator_slug":"parallelogram-area-calculator","calculator_id":"118","tag_name":"area calculator"},{"calculator_name":"Percentage Depreciation Calculator","cat_name":"Finance","calculator_slug":"percentage-depreciation-calculator","calculator_id":"151","tag_name":"percentage depreciation calculator"},{"calculator_name":"Percent Error Calculator","cat_name":"Math","calculator_slug":"percent-error-calculator","calculator_id":"152","tag_name":"percent error calculator"},{"calculator_name":"Percent Off Calculator","cat_name":"Finance","calculator_slug":"percent-off-calculator","calculator_id":"153","tag_name":"percent off calculator"},{"calculator_name":"Proportion Calculator","cat_name":"Math","calculator_slug":"proportion-calculator","calculator_id":"154","tag_name":"proportion calculator"},{"calculator_name":"Rectangle Area Calculator","cat_name":"Math","calculator_slug":"rectangle-area-calculator","calculator_id":"113","tag_name":"rectangle area calculator"},{"calculator_name":"Rounding Calculator","cat_name":"Math","calculator_slug":"rounding-calculator","calculator_id":"155","tag_name":"rounding calculator"},{"calculator_name":"Scientific Calculator","cat_name":"Math","calculator_slug":"scientific-calculator","calculator_id":"130","tag_name":"scientific calculator"},{"calculator_name":"Sector Area Calculator","cat_name":"Math","calculator_slug":"sector-area-calculator","calculator_id":"116","tag_name":"sector area calculator"},{"calculator_name":"Sphere Calculator","cat_name":"Math","calculator_slug":"sphere-calculator","calculator_id":"123","tag_name":"sphere calculator"},{"calculator_name":"Stock Calculator","cat_name":"Finance","calculator_slug":"stock-calculator","calculator_id":"156","tag_name":"stock calculator"},{"calculator_name":"Straight Line Depreciation Calculator","cat_name":"Finance","calculator_slug":"straight-line-depreciation-calculator","calculator_id":"157","tag_name":"straight line depreciation calculator"},{"calculator_name":"Triangle Area Calculator","cat_name":"Math","calculator_slug":"triangle-area-calculator","calculator_id":"114","tag_name":"triangle area calculator"},{"calculator_name":"WACC Calculator","cat_name":"Finance","calculator_slug":"wacc-calculator","calculator_id":"158","tag_name":"wacc calculator"},{"calculator_name":"WACC Calculator","cat_name":"Finance","calculator_slug":"wacc-calculator","calculator_id":"158","tag_name":"Weighted Average Cost of Capital Calculator"},{"calculator_name":"Z Score Calculator","cat_name":"Math","calculator_slug":"z-score-calculator","calculator_id":"159","tag_name":"z score calculator"},{"calculator_name":"ABV Calculator","cat_name":"Informative","calculator_slug":"abv-calculator","calculator_id":"160","tag_name":"ABV (Alcohol By Volume) Calculator"},{"calculator_name":"Standard Form Calculator","cat_name":"Math","calculator_slug":"standard-form-calculator","calculator_id":"161","tag_name":"Standard form calculator"},{"calculator_name":"Quadratic Formula Calculator","cat_name":"Math","calculator_slug":"quadratic-formula-calculator","calculator_id":"162","tag_name":"quadratic formula calculator"},{"calculator_name":"Coefficient Of Variation Calculator","cat_name":"Math","calculator_slug":"coefficient-of-variation-calculator","calculator_id":"163","tag_name":"Coefficient of variation calculator"},{"calculator_name":"Mulch Calculator","cat_name":"Construction","calculator_slug":"mulch-calculator","calculator_id":"164","tag_name":"Mulch calculator"},{"calculator_name":"Critical Value Calculator","cat_name":"Math","calculator_slug":"t-value-calculator","calculator_id":"165","tag_name":"Critical value calculator"},{"calculator_name":"calculadora de embarazo","cat_name":"Health","calculator_slug":"calculadora-de-embarazo","calculator_id":"125","tag_name":"calculadora de embarazo"},{"calculator_name":"calculadora de edad","cat_name":"Informative","calculator_slug":"calculadora-de-edad","calculator_id":"126","tag_name":"calculadora de edad"},{"calculator_name":"Blood Pressure Calculator","cat_name":"Health","calculator_slug":"blood-pressure-calculator","calculator_id":"166","tag_name":"BP Calculator"},{"calculator_name":"Blood Pressure Calculator","cat_name":"Health","calculator_slug":"blood-pressure-calculator","calculator_id":"166","tag_name":"blood pressure calculator"},{"calculator_name":"Calculadora Cientifica","cat_name":"Math","calculator_slug":"calculadora-cientifica","calculator_id":"131","tag_name":"calculadora cientifica"},{"calculator_name":"1rm Calculator","cat_name":"Fitness","calculator_slug":"1rm-calculator","calculator_id":"167","tag_name":"1rm Calculator"},{"calculator_name":"Weighted Average Calculator","cat_name":"Math","calculator_slug":"weighted-average-calculator","calculator_id":"168","tag_name":"Weighted average calculator"},{"calculator_name":"Determinant Calculator","cat_name":"Math","calculator_slug":"determinant-calculator","calculator_id":"169","tag_name":"determinant calculator"},{"calculator_name":"Hijri To Gregorian Converter","cat_name":"Conversion","calculator_slug":"hijri-to-gregorian-calculator","calculator_id":"170","tag_name":"hijri to gregorian calculator"},{"calculator_name":"Variance Calculator","cat_name":"Math","calculator_slug":"variance-calculator","calculator_id":"171","tag_name":"variance calculator"},{"calculator_name":"Chemical Equation Balancer","cat_name":"Chemistry","calculator_slug":"chemical-equation-balancer","calculator_id":"172","tag_name":"chemical equation balancer"},{"calculator_name":"Square Footage Calculator","cat_name":"Construction","calculator_slug":"square-footage-calculator","calculator_id":"173","tag_name":"square footage calculator"},{"calculator_name":"Gravel Calculator","cat_name":"Construction","calculator_slug":"gravel-calculator","calculator_id":"176","tag_name":"Gravel Calculator"},{"calculator_name":"Mpg Calculator","cat_name":"Informative","calculator_slug":"mpg-calculator","calculator_id":"177","tag_name":"Mpg Calculator"},{"calculator_name":"Tip Calculator","cat_name":"Informative","calculator_slug":"tip-calculator","calculator_id":"178","tag_name":"Tip Calculator"},{"calculator_name":"Binary Calculator","cat_name":"Math","calculator_slug":"binary-calculator","calculator_id":"179","tag_name":"Binary Calculator"},{"calculator_name":"Text To Binary","cat_name":"Conversion","calculator_slug":"text-to-binary","calculator_id":"180","tag_name":"Text to binary converter"},{"calculator_name":"Decimal To Binary Converter","cat_name":"Conversion","calculator_slug":"decimal-to-binary-converter","calculator_id":"181","tag_name":"Decimal to binary converter"},{"calculator_name":"Binary To Decimal Converter","cat_name":"Conversion","calculator_slug":"binary-to-decimal-converter","calculator_id":"182","tag_name":"Binary to decimal converter"},{"calculator_name":"Hex to Decimal","cat_name":"Conversion","calculator_slug":"hex-to-decimal","calculator_id":"183","tag_name":"Hex to decimal"},{"calculator_name":"Decimal to Hex","cat_name":"Conversion","calculator_slug":"decimal-to-hex","calculator_id":"184","tag_name":"Decimal to hex"},{"calculator_name":"Binary to Hex","cat_name":"Conversion","calculator_slug":"binary-to-hex","calculator_id":"185","tag_name":"Binary to hex"},{"calculator_name":"Hex to Binary","cat_name":"Conversion","calculator_slug":"hex-to-binary","calculator_id":"186","tag_name":"Hex to binary"},{"calculator_name":"Binary to Octal","cat_name":"Conversion","calculator_slug":"binary-to-octal","calculator_id":"187","tag_name":"Binary to octal"},{"calculator_name":"Decimal to Octal","cat_name":"Conversion","calculator_slug":"decimal-to-octal","calculator_id":"188","tag_name":"Decimal to octal"},{"calculator_name":"Hex to Octal","cat_name":"Conversion","calculator_slug":"hex-to-octal","calculator_id":"189","tag_name":"Hex to octal"},{"calculator_name":"Octal to Binary","cat_name":"Conversion","calculator_slug":"octal-to-binary","calculator_id":"190","tag_name":"Octal to binary"},{"calculator_name":"Octal to Decimal","cat_name":"Conversion","calculator_slug":"octal-to-decimal","calculator_id":"191","tag_name":"Octal to decimal"},{"calculator_name":"Octal to Hexadecimal","cat_name":"Conversion","calculator_slug":"octal-to-hexadecimal","calculator_id":"192","tag_name":"Octal to hex"},{"calculator_name":"ASCII to Text","cat_name":"Conversion","calculator_slug":"ascii-to-text","calculator_id":"193","tag_name":"Ascii to text"},{"calculator_name":"Octal Calculator","cat_name":"Math","calculator_slug":"octal-calculator","calculator_id":"194","tag_name":"Octal calculator"},{"calculator_name":"Hex Calculator","cat_name":"Math","calculator_slug":"hex-calculator","calculator_id":"195","tag_name":"Hex calculator"},{"calculator_name":"Text to Ascii","cat_name":"Conversion","calculator_slug":"text-to-ascii","calculator_id":"196","tag_name":"Text To Ascii"},{"calculator_name":"ASCII to Hex","cat_name":"Conversion","calculator_slug":"ascii-to-hex","calculator_id":"197","tag_name":"ASCII To Hex"},{"calculator_name":"Hex to ASCII","cat_name":"Conversion","calculator_slug":"hex-to-ascii","calculator_id":"198","tag_name":"HEX to ASCII"},{"calculator_name":"Text to Hex","cat_name":"Conversion","calculator_slug":"text-to-hex","calculator_id":"199","tag_name":"Text to HEX"},{"calculator_name":"Hex to Text","cat_name":"Conversion","calculator_slug":"hex-to-text","calculator_id":"200","tag_name":"Hex to Text"},{"calculator_name":"Binary Translator","cat_name":"Math","calculator_slug":"binary-translator","calculator_id":"201","tag_name":"Binary Translator"},{"calculator_name":"Decimal to ASCII","cat_name":"Conversion","calculator_slug":"decimal-to-ascii","calculator_id":"202","tag_name":"Decimal to ASCII"},{"calculator_name":"Ascii to Decimal","cat_name":"Conversion","calculator_slug":"ascii-to-decimal","calculator_id":"203","tag_name":"ASCII to Decimal"},{"calculator_name":"Depression Test","cat_name":"Health","calculator_slug":"depression-test","calculator_id":"204","tag_name":"Depression Test Calculator"},{"calculator_name":"Mortgage Affordability Calculator","cat_name":"Real Estate","calculator_slug":"affordability-calculator","calculator_id":"205","tag_name":"affordability calculator"},{"calculator_name":"Term Deposits Calculator","cat_name":"Finance","calculator_slug":"term-deposits-calculator","calculator_id":"207","tag_name":"term deposits calculator"},{"calculator_name":"Body Fat Calculator","cat_name":"Fitness","calculator_slug":"body-fat-calculator","calculator_id":"208","tag_name":"Body Fat Calculator"},{"calculator_name":"Bra Size Calculator","cat_name":"Informative","calculator_slug":"bra-size-calculator","calculator_id":"209","tag_name":"Bra size calculator"},{"calculator_name":"Bra Size Converter","cat_name":"Conversion","calculator_slug":"bra-size-converter","calculator_id":"210","tag_name":"Bra Size Converter"},{"calculator_name":"Cubic Feet Calculator","cat_name":"Math","calculator_slug":"cubic-feet-calculator","calculator_id":"211","tag_name":"Cubic feet calculator"},{"calculator_name":"Dpi Calculator","cat_name":"Informative","calculator_slug":"dpi-calculator","calculator_id":"212","tag_name":"Dpi Calculator"},{"calculator_name":"Inflation Calculator","cat_name":"Finance","calculator_slug":"inflation-calculator","calculator_id":"213","tag_name":"Inflation Calculator"},{"calculator_name":"Inflation Calculator UK","cat_name":"Finance","calculator_slug":"inflation-calculator-uk","calculator_id":"214","tag_name":"Inflation Calculator Uk"},{"calculator_name":"Keto Calculator","cat_name":"Fitness","calculator_slug":"keto-calculator","calculator_id":"215","tag_name":"keto calculator"},{"calculator_name":"Square Calculator","cat_name":"Math","calculator_slug":"square-calculator","calculator_id":"216","tag_name":"Square calculator"},{"calculator_name":"Sleep Calculator","cat_name":"Informative","calculator_slug":"sleep-calculator","calculator_id":"217","tag_name":"Sleep Calculator"},{"calculator_name":"Speed Calculator","cat_name":"Informative","calculator_slug":"speed-calculator","calculator_id":"218","tag_name":"Speed Calculator"},{"calculator_name":"High School GPA Calculator","cat_name":"Informative","calculator_slug":"high-school-gpa-calculator","calculator_id":"219","tag_name":"high school gpa calculator"},{"calculator_name":"Rhombus Area Calculator","cat_name":"Math","calculator_slug":"rhombus-area-calculator","calculator_id":"220","tag_name":"Rhombus Area Calculator"},{"calculator_name":"Quartile Calculator","cat_name":"Math","calculator_slug":"quartile-calculator","calculator_id":"235","tag_name":"quartile calculator"},{"calculator_name":"Kite Area Calculator","cat_name":"Math","calculator_slug":"kite-area-calculator","calculator_id":"221","tag_name":"Kite Area Calculator"},{"calculator_name":"Pentagon Calculator","cat_name":"Math","calculator_slug":"pentagon-calculator","calculator_id":"222","tag_name":"Pentagon calculator"},{"calculator_name":"Hexagon Calculator","cat_name":"Math","calculator_slug":"hexagon-calculator","calculator_id":"223","tag_name":"Hexagon calculator"},{"calculator_name":"Octagon Calculator","cat_name":"Math","calculator_slug":"octagon-calculator","calculator_id":"224","tag_name":"Octagon calculator"},{"calculator_name":"Annulus Calculator","cat_name":"Math","calculator_slug":"annulus-calculator","calculator_id":"225","tag_name":"Annulus Calculator"},{"calculator_name":"Final Grade Calculator","cat_name":"Informative","calculator_slug":"final-grade-calculator","calculator_id":"226","tag_name":"Final Grade Calculator"},{"calculator_name":"Ez Grader","cat_name":"Informative","calculator_slug":"ez-grader-calculator","calculator_id":"227","tag_name":"Ez grader calculator"},{"calculator_name":"Semester Grade Calculator","cat_name":"Informative","calculator_slug":"semester-grade-calculator","calculator_id":"228","tag_name":"Semester Grade Calculator"},{"calculator_name":"Grade Calculator","cat_name":"Informative","calculator_slug":"grade-calculator","calculator_id":"229","tag_name":"Grade calculator"},{"calculator_name":"Quadrilateral Calculator","cat_name":"Math","calculator_slug":"quadrilateral-calculator","calculator_id":"230","tag_name":"Quadrilateral calculator"},{"calculator_name":"Polygon Calculator","cat_name":"Math","calculator_slug":"polygon-calculator","calculator_id":"231","tag_name":"Polygon calculator"},{"calculator_name":"Parkland Formula Calculator","cat_name":"Informative","calculator_slug":"parkland-formula-calculator","calculator_id":"232","tag_name":"Parkland formula calculator"},{"calculator_name":"Absolute Value Calculator","cat_name":"Math","calculator_slug":"absolute-value-calculator","calculator_id":"233","tag_name":"Absolute value calculator"},{"calculator_name":"Calorie Counter","cat_name":"Informative","calculator_slug":"calorie-counter","calculator_id":"234","tag_name":"Calorie counter"},{"calculator_name":"Scientific Notation Converter","cat_name":"Math","calculator_slug":"scientific-notation-converter","calculator_id":"286","tag_name":"Scientific notation converter"},{"calculator_name":"Scientific Notation Calculator","cat_name":"Math","calculator_slug":"scientific-notation-calculator","calculator_id":"285","tag_name":"Scientific notation calculator"},{"calculator_name":"PPI Calculator","cat_name":"Informative","calculator_slug":"ppi-calculator","calculator_id":"313","tag_name":"PPI Calculator"},{"calculator_name":"Double Angle Formula Calculator","cat_name":"Math","calculator_slug":"double-angle-formula-calculator","calculator_id":"312","tag_name":"Double Angle Formula Calculator"},{"calculator_name":"Empirical Rule Calculator","cat_name":"Math","calculator_slug":"empirical-rule-calculator","calculator_id":"311","tag_name":"Empirical Rule Calculator"},{"calculator_name":"Ordering Fractions Calculator","cat_name":"Math","calculator_slug":"ordering-fractions-calculator","calculator_id":"310","tag_name":"Ordering Fractions Calculator"},{"calculator_name":"PVIFA Calculator","cat_name":"Finance","calculator_slug":"pvifa-calculator","calculator_id":"309","tag_name":"PVIFA Calculator"},{"calculator_name":"Force Calculator","cat_name":"Physics","calculator_slug":"force-calculator","calculator_id":"307","tag_name":"Force Calculator"},{"calculator_name":"Theoretical Yield Calculator","cat_name":"Chemistry","calculator_slug":"theoretical-yield-calculator","calculator_id":"308","tag_name":"Theoretical Yield Calculator"},{"calculator_name":"Summation Calculator","cat_name":"Math","calculator_slug":"summation-calculator","calculator_id":"306","tag_name":"Summation Calculator"},{"calculator_name":"Summation Calculator","cat_name":"Math","calculator_slug":"summation-calculator","calculator_id":"306","tag_name":"Sum Calculator"},{"calculator_name":"Derivative Calculator","cat_name":"Math","calculator_slug":"derivative-calculator","calculator_id":"305","tag_name":"Derivative Calculator"},{"calculator_name":"Integral Calculator","cat_name":"Math","calculator_slug":"integral-calculator","calculator_id":"304","tag_name":"Intergral Calculator"},{"calculator_name":"Integral Calculator","cat_name":"Math","calculator_slug":"integral-calculator","calculator_id":"304","tag_name":"integration calculator"},{"calculator_name":"Boolean Algebra Calculator","cat_name":"Math","calculator_slug":"boolean-algebra-calculator","calculator_id":"288","tag_name":"Boolean Algebra Calculator"},{"calculator_name":"Half Life Calculator","cat_name":"Physics","calculator_slug":"half-life-calculator","calculator_id":"287","tag_name":"Half Life Calculator"},{"calculator_name":"5 Number Summary Calculator","cat_name":"Math","calculator_slug":"five-number-summary-calculator","calculator_id":"289","tag_name":"Five Number Summary Calculator"},{"calculator_name":"Order of Operations Calculator","cat_name":"Math","calculator_slug":"order-of-operations-calculator","calculator_id":"262","tag_name":"Order of Operations Calculator"},{"calculator_name":"Flow Rate Calculator","cat_name":"Physics","calculator_slug":"flow-rate-calculator","calculator_id":"323","tag_name":"Flow Rate Calculator"},{"calculator_name":"Half Angle Calculator","cat_name":"Math","calculator_slug":"half-angle-calculator","calculator_id":"322","tag_name":"Half Angle Calculator"},{"calculator_name":"Potential Energy Calculator","cat_name":"Physics","calculator_slug":"potential-energy-calculator","calculator_id":"321","tag_name":"Potential Energy Calculator"},{"calculator_name":"Point Slope Form Calculator","cat_name":"Math","calculator_slug":"point-slope-form-calculator","calculator_id":"320","tag_name":"Point Slope Form Calculator"},{"calculator_name":"Circumcenter Calculator","cat_name":"Math","calculator_slug":"circumcenter-calculator","calculator_id":"324","tag_name":"Circumcenter Calculator"},{"calculator_name":"Bernoulli Numbers Calculator","cat_name":"Physics","calculator_slug":"bernoulli-numbers-calculator","calculator_id":"353","tag_name":"Bernoulli Numbers Calculator"},{"calculator_name":"Nusselt Number Calculator","cat_name":"Physics","calculator_slug":"nusselt-number-calculator","calculator_id":"354","tag_name":"Nusselt Number Calculator"},{"calculator_name":"Macro Calculator","cat_name":"Fitness","calculator_slug":"macro-calculator","calculator_id":"3","tag_name":"diet planner"},{"calculator_name":"Brake Horsepower Calculator","cat_name":"Physics","calculator_slug":"brake-horsepower-calculator","calculator_id":"355","tag_name":"Brake Horsepower Calculator"},{"calculator_name":"Macro Calculator","cat_name":"Fitness","calculator_slug":"macro-calculator","calculator_id":"3","tag_name":"fitness"},{"calculator_name":"Million Billion Lakh Crore Converter","cat_name":"Conversion","calculator_slug":"million-billion-lakh-crore-converter","calculator_id":"356","tag_name":"Million Billion Lakh Crore Converter"},{"calculator_name":"Exponent Calculator","cat_name":"Math","calculator_slug":"exponent-calculator","calculator_id":"357","tag_name":"Exponent Calculator"},{"calculator_name":"Geometric Mean Calculator","cat_name":"Math","calculator_slug":"geometric-mean","calculator_id":"369","tag_name":"Geometric Mean Calculator"},{"calculator_name":"Complex Number Calculator","cat_name":"Math","calculator_slug":"complex-number","calculator_id":"368","tag_name":"Complex Number Calculator"},{"calculator_name":"Elastic Potential Energy Calculator","cat_name":"Physics","calculator_slug":"elastic-potential-energy","calculator_id":"370","tag_name":"Elastic Potential Energy Calculator"},{"calculator_name":"Mode Calculator","cat_name":"Math","calculator_slug":"mode-calculator","calculator_id":"367","tag_name":"Mode Calculator"},{"calculator_name":"Mean Calculator","cat_name":"Math","calculator_slug":"mean-calculator","calculator_id":"366","tag_name":"Mean Calculator"},{"calculator_name":"Median Calculator","cat_name":"Math","calculator_slug":"median-calculator","calculator_id":"365","tag_name":"Median Calculator"},{"calculator_name":"Mean Deviation","cat_name":"Math","calculator_slug":"mean-deviation","calculator_id":"364","tag_name":"Mean Deviation"},{"calculator_name":"Limit Calculator","cat_name":"Math","calculator_slug":"limit-calculator","calculator_id":"363","tag_name":"Limit Calculator"},{"calculator_name":"AC to DC Calculator","cat_name":"Math","calculator_slug":"ac-to-dc-converter","calculator_id":"362","tag_name":"AC to DC Calculator"},{"calculator_name":"Battery Charge Time Calculator","cat_name":"Physics","calculator_slug":"battery-charge-time","calculator_id":"371","tag_name":"Battery Charge Time Calculator"},{"calculator_name":"Ratio calculator","cat_name":"Math","calculator_slug":"ratio-calculator","calculator_id":"372","tag_name":"Ratio calculator"},{"calculator_name":"Fraction Calculator","cat_name":"Math","calculator_slug":"fraction-calculator","calculator_id":"373","tag_name":"Fraction Calculator"},{"calculator_name":"Paper weight Calculator","cat_name":"Math","calculator_slug":"paper-calculator","calculator_id":"374","tag_name":"Paper weight Calculator"},{"calculator_name":"Rational and Irrational Calculator","cat_name":"Math","calculator_slug":"rational-and-irrational","calculator_id":"375","tag_name":"Rational and Irrational Calculator"},{"calculator_name":"Density Calculator","cat_name":"Physics","calculator_slug":"density-calculator","calculator_id":"376","tag_name":"Density Calculator"},{"calculator_name":"weight Force Calculator","cat_name":"Physics","calculator_slug":"weight-force-calculator","calculator_id":"377","tag_name":"weight Force Calculator"},{"calculator_name":"Points coordinates calculator","cat_name":"Math","calculator_slug":"points-coordinates","calculator_id":"378","tag_name":"Points coordinates calculator"},{"calculator_name":"Perpendicular Bisector Calculator","cat_name":"Math","calculator_slug":"perpendicular-bisector-calculator","calculator_id":"379","tag_name":"Perpendicular Bisector Calculator"},{"calculator_name":"Fraction Percent Calculator","cat_name":"Conversion","calculator_slug":"fraction-percent-calculator","calculator_id":"380","tag_name":"Fraction Percent Calculator"},{"calculator_name":"Square Tube Center Calculator","cat_name":"Informative","calculator_slug":"square-tube-center-calculator","calculator_id":"391","tag_name":"Square Tube Center Calculator"},{"calculator_name":"Deflection solid round beams","cat_name":"Informative","calculator_slug":"deflection-solid-round-beams","calculator_id":"390","tag_name":"Deflection solid round beams"},{"calculator_name":"Beam Deflection Calculator for Solid Rectangular Beams","cat_name":"Informative","calculator_slug":"deflection-solid-rectangular-beams","calculator_id":"389","tag_name":"Solid Rectangular Beams"},{"calculator_name":"Round tube beam deflection calculator","cat_name":"Informative","calculator_slug":"round-tube-beam-deflection-calculator","calculator_id":"388","tag_name":"Round tube beam deflection calculator"},{"calculator_name":"Potential Flight Time Calculator","cat_name":"Informative","calculator_slug":"potential-flight-time-calculator","calculator_id":"387","tag_name":"Potential Flight Time Calculator"},{"calculator_name":"Post Trip Fuel Calculator","cat_name":"Informative","calculator_slug":"post-trip-fuel-calculator","calculator_id":"386","tag_name":"Post Trip Fuel Calculator"},{"calculator_name":"Hydraulic Cylinder Calculator","cat_name":"Informative","calculator_slug":"hydraulic-cylinder-calculator","calculator_id":"385","tag_name":"Hydraulic Cylinder Calculator"},{"calculator_name":"Deflection For Hollow Rectangular Beams Calculator","cat_name":"Informative","calculator_slug":"deflection-for-hollow-rectangular-beams-calculator","calculator_id":"384","tag_name":"Deflection For Hollow Rectangular Beams Calculator"},{"calculator_name":"Gallons Per Hour Consumption Calculation","cat_name":"Informative","calculator_slug":"gallons-per-hour-consumption-calculation","calculator_id":"383","tag_name":"Gallons Per Hour Calculator"},{"calculator_name":"Arctan Calculator","cat_name":"Math","calculator_slug":"arctan-calculator","calculator_id":"382","tag_name":"Arctan Calculator"},{"calculator_name":"Kalkulator TDEE","cat_name":"Health","calculator_slug":"kalkulator-tdee","calculator_id":"381","tag_name":"TDEE Calculator"},{"calculator_name":"Percentage Decrease Calculator","cat_name":"Math","calculator_slug":"percentage-decrease-calculator","calculator_id":"397","tag_name":"Percentage Decrease Calculator"},{"calculator_name":"ya\u015f hesaplama","cat_name":"Informative","calculator_slug":"yas-hesaplama","calculator_id":"238","tag_name":null},{"calculator_name":"alter berechnen","cat_name":"Informative","calculator_slug":"alter-berechnen","calculator_id":"239","tag_name":null},{"calculator_name":"calcular idade","cat_name":"Informative","calculator_slug":"calcular-idade","calculator_id":"240","tag_name":null},{"calculator_name":"kalkulator wieku","cat_name":"Informative","calculator_slug":"kalkulator-wieku","calculator_id":"241","tag_name":null},{"calculator_name":"calcolo et\u00e0","cat_name":"Informative","calculator_slug":"calcolo-eta","calculator_id":"243","tag_name":null},{"calculator_name":"leeftijd berekenen","cat_name":"Informative","calculator_slug":"leeftijd-berekenen","calculator_id":"245","tag_name":null},{"calculator_name":"calcul age","cat_name":"Informative","calculator_slug":"calcul-age","calculator_id":"246","tag_name":null},{"calculator_name":"p\u00e4iv\u00e4laskuri","cat_name":"Informative","calculator_slug":"paivalaskuri","calculator_id":"247","tag_name":null},{"calculator_name":"calcular promedio","cat_name":"Math","calculator_slug":"calcular-promedio","calculator_id":"248","tag_name":null},{"calculator_name":"durchschnitt berechnen","cat_name":"Math","calculator_slug":"durchschnitt-berechnen","calculator_id":"249","tag_name":null},{"calculator_name":"\u043e\u0431\u044a\u0435\u043c \u0446\u0438\u043b\u0438\u043d\u0434\u0440\u0430","cat_name":"Conversion","calculator_slug":"obyem-tsilindra","calculator_id":"250","tag_name":null},{"calculator_name":"gebelik haftas\u0131 hesaplama","cat_name":"Health","calculator_slug":"gebelik-haftasi-hesaplama","calculator_id":"251","tag_name":null},{"calculator_name":"\u043a\u0430\u043b\u0435\u043d\u0434\u0430\u0440\u044c \u0431\u0435\u0440\u0435\u043c\u0435\u043d\u043d\u043e\u0441\u0442\u0438 \u0440\u0430\u0441\u0441\u0447\u0438\u0442\u0430\u0442\u044c","cat_name":"Health","calculator_slug":"kalendar-beremennosti-rasschitat","calculator_id":"252","tag_name":null},{"calculator_name":"calculadora de gravidez","cat_name":"Health","calculator_slug":"calculadora-de-gravidez","calculator_id":"253","tag_name":null},{"calculator_name":"kalkulator ci\u0105\u017cy","cat_name":"Health","calculator_slug":"kalkulator-ciazy","calculator_id":"254","tag_name":null},{"calculator_name":"kalkulator kehamilan","cat_name":"Health","calculator_slug":"kalkulator-kehamilan","calculator_id":"255","tag_name":null},{"calculator_name":"calcolo settimane gravidanza","cat_name":"Health","calculator_slug":"calcolo-settimane-gravidanza","calculator_id":"256","tag_name":null},{"calculator_name":"uitgerekende datum","cat_name":"Health","calculator_slug":"uitgerekende-datum-berekenen","calculator_id":"257","tag_name":null},{"calculator_name":"calcul grossesse","cat_name":"Health","calculator_slug":"calcul-grossesse","calculator_id":"258","tag_name":null},{"calculator_name":"raskauslaskuri","cat_name":"Health","calculator_slug":"raskauslaskuri","calculator_id":"259","tag_name":null},{"calculator_name":"\ub098\uc774\uacc4\uc0b0","cat_name":"Informative","calculator_slug":"nai-gyesan","calculator_id":"260","tag_name":null},{"calculator_name":"menghitung umur","cat_name":"Informative","calculator_slug":"menghitung-umur","calculator_id":"261","tag_name":null},{"calculator_name":"calcular porcentaje","cat_name":"Math","calculator_slug":"calcular-porcentaje","calculator_id":"263","tag_name":null},{"calculator_name":"\u043a\u0430\u043b\u044c\u043a\u0443\u043b\u044f\u0442\u043e\u0440 \u043f\u0440\u043e\u0446\u0435\u043d\u0442\u043e\u0432","cat_name":"Math","calculator_slug":"kalkulyator-protsentov","calculator_id":"267","tag_name":null},{"calculator_name":"prozentrechner","cat_name":"Math","calculator_slug":"prozentrechner","calculator_id":"268","tag_name":null},{"calculator_name":"calculadora de porcentagem","cat_name":"Math","calculator_slug":"calculadora-de-porcentagem","calculator_id":"269","tag_name":null},{"calculator_name":"kalkulator procentowy","cat_name":"Math","calculator_slug":"kalkulator-procentowy","calculator_id":"270","tag_name":null},{"calculator_name":"calcolo percentuale","cat_name":"Math","calculator_slug":"calcolo-percentuale","calculator_id":"271","tag_name":null},{"calculator_name":"calculer un proucentage","cat_name":"Math","calculator_slug":"calculer-un-proucentage","calculator_id":"272","tag_name":null},{"calculator_name":"y\u00fczde hesaplama","cat_name":"Math","calculator_slug":"yuzde-hesaplama","calculator_id":"273","tag_name":null},{"calculator_name":"\ud37c\uc13c\ud2b8 \uacc4\uc0b0\uae30","cat_name":"Math","calculator_slug":"peosenteu-gyesangi","calculator_id":"274","tag_name":null},{"calculator_name":"menghitung persen","cat_name":"Math","calculator_slug":"menghitung-persen","calculator_id":"275","tag_name":null},{"calculator_name":"procenten berekenen","cat_name":"Math","calculator_slug":"procenten-berekenen","calculator_id":"276","tag_name":null},{"calculator_name":"prosenttilaskuri","cat_name":"Math","calculator_slug":"prosenttilaskuri","calculator_id":"277","tag_name":null},{"calculator_name":"v\u00fccut kitle indeksi hesaplama","cat_name":"Fitness","calculator_slug":"vucut-kitle-indeksi-hesaplama","calculator_id":"278","tag_name":null},{"calculator_name":"\u0438\u043c\u0442 \u043a\u0430\u043b\u044c\u043a\u0443\u043b\u044f\u0442\u043e\u0440","cat_name":"Fitness","calculator_slug":"imt-kalkulyator","calculator_id":"279","tag_name":null},{"calculator_name":"bmi rechner","cat_name":"Fitness","calculator_slug":"bmi-rechner","calculator_id":"280","tag_name":null},{"calculator_name":"kalkulator bmi","cat_name":"Fitness","calculator_slug":"kalkulator-bmi","calculator_id":"281","tag_name":null},{"calculator_name":"bmi kalkulator","cat_name":"Fitness","calculator_slug":"bmi-kalkulator","calculator_id":"282","tag_name":null},{"calculator_name":"calcolo bmi","cat_name":"Fitness","calculator_slug":"calcolo-bmi","calculator_id":"283","tag_name":null},{"calculator_name":"bmi \uacc4\uc0b0","cat_name":"Fitness","calculator_slug":"bmi-gyesan","calculator_id":"284","tag_name":null},{"calculator_name":"Calcular \u00c1rea Tri\u00e1ngulo","cat_name":"Math","calculator_slug":"calcular-area-triangulo","calculator_id":"290","tag_name":null},{"calculator_name":"calculadora de vectores","cat_name":"Math","calculator_slug":"calculadora-de-vectores","calculator_id":"291","tag_name":null},{"calculator_name":"kreuzprodukt rechner","cat_name":"Math","calculator_slug":"kreuzprodukt-rechner","calculator_id":"292","tag_name":null},{"calculator_name":"Calcular Media","cat_name":"Math","calculator_slug":"calcular-media","calculator_id":"293","tag_name":null},{"calculator_name":"kalkulator \u015bredniej","cat_name":"Math","calculator_slug":"kalkulator-sredniej","calculator_id":"294","tag_name":null},{"calculator_name":"Calcolo Media","cat_name":"Math","calculator_slug":"calcolo-media","calculator_id":"295","tag_name":null},{"calculator_name":"calculer une moyenne","cat_name":"Math","calculator_slug":"calculer-une-moyenne","calculator_id":"296","tag_name":null},{"calculator_name":"GPA hesaplama","cat_name":"Informative","calculator_slug":"gpa-hesaplama","calculator_id":"297","tag_name":null},{"calculator_name":"Calcular Volumen de un Cilindro","cat_name":"Math","calculator_slug":"calcular-volumen-de-un-cilindro","calculator_id":"298","tag_name":null},{"calculator_name":"Volumen Zylinder Berechnen","cat_name":"Math","calculator_slug":"volumen-zylinder-berechnen","calculator_id":"299","tag_name":null},{"calculator_name":"Calculo Volume Cilindro","cat_name":"Math","calculator_slug":"calculo-volume-cilindro","calculator_id":"300","tag_name":null},{"calculator_name":"Calcolo Volume Cilindro","cat_name":"Math","calculator_slug":"calcolo-volume-cilindro","calculator_id":"301","tag_name":null},{"calculator_name":"Inhoud Cilinder Berekenen","cat_name":"Math","calculator_slug":"cilinder-berekenen","calculator_id":"302","tag_name":null},{"calculator_name":"Calcul du volume d'un cylindre","cat_name":"Math","calculator_slug":"calcul-volume-cylindre","calculator_id":"303","tag_name":null},{"calculator_name":"Calcular Descuento","cat_name":"Finance","calculator_slug":"calcular-descuento","calculator_id":"314","tag_name":null},{"calculator_name":"indirim hesaplama","cat_name":"Finance","calculator_slug":"indirim-hesaplama","calculator_id":"315","tag_name":null},{"calculator_name":"\u043a\u0430\u043b\u044c\u043a\u0443\u043b\u044f\u0442\u043e\u0440 \u0441\u043a\u0438\u0434\u043e\u043a","cat_name":"Finance","calculator_slug":"kalkulyator-skidok","calculator_id":"316","tag_name":null},{"calculator_name":"rabattrechner","cat_name":"Finance","calculator_slug":"rabattrechner","calculator_id":"317","tag_name":null},{"calculator_name":"kalkulator diskon","cat_name":"Finance","calculator_slug":"kalkulator-diskon","calculator_id":"318","tag_name":null},{"calculator_name":"Calcolo Sconto","cat_name":"Finance","calculator_slug":"calcolo-sconto","calculator_id":"325","tag_name":null},{"calculator_name":"Korting Berekenen","cat_name":"Finance","calculator_slug":"korting-berekenen","calculator_id":"328","tag_name":null},{"calculator_name":"Calcular GPA","cat_name":"Informative","calculator_slug":"calcular-gpa","calculator_id":"329","tag_name":null},{"calculator_name":"Calculadora TMB","cat_name":"Fitness","calculator_slug":"calculadora-tmb","calculator_id":"330","tag_name":null},{"calculator_name":"Bazal Metabolizma Hesaplama","cat_name":"Fitness","calculator_slug":"bazal-metabolizma-hesaplama","calculator_id":"331","tag_name":null},{"calculator_name":"Grundumsatz Berechnen","cat_name":"Fitness","calculator_slug":"grundumsatz-berechnen","calculator_id":"332","tag_name":null},{"calculator_name":"Kalkulator Zapotrzebowania Kalorycznego","cat_name":"Fitness","calculator_slug":"kalkulator-zapotrzebowania-kalorycznego","calculator_id":"333","tag_name":null},{"calculator_name":"Kalkulator BMR","cat_name":"Fitness","calculator_slug":"kalkulator-bmr","calculator_id":"334","tag_name":null},{"calculator_name":"Calcolo Metabolismo Basale","cat_name":"Fitness","calculator_slug":"calcolo-metabolismo-basale","calculator_id":"335","tag_name":null},{"calculator_name":"\uae30\ucd08\ub300\uc0ac\ub7c9 \uacc4\uc0b0","cat_name":"Fitness","calculator_slug":"gichodaesalyang-gyesan","calculator_id":"336","tag_name":null},{"calculator_name":"BMR berekenen","cat_name":"Fitness","calculator_slug":"bmr-berekenen","calculator_id":"337","tag_name":null},{"calculator_name":"Calculadora de Macros","cat_name":"Fitness","calculator_slug":"calculadora-de-macros","calculator_id":"338","tag_name":null},{"calculator_name":"kalkulator kalorii","cat_name":"Fitness","calculator_slug":"kalkulator-kalorii","calculator_id":"339","tag_name":null},{"calculator_name":"GPA Rekenmachine","cat_name":"Informative","calculator_slug":"gpa-rekenmachine","calculator_id":"341","tag_name":null},{"calculator_name":"Calculateur GPA","cat_name":"Informative","calculator_slug":"calculateur-gpa","calculator_id":"342","tag_name":null},{"calculator_name":"Kalkulator IPK","cat_name":"Informative","calculator_slug":"kalkulator-ipk","calculator_id":"343","tag_name":null},{"calculator_name":"kalkulator gpa","cat_name":"Informative","calculator_slug":"kalkulator-gpa","calculator_id":"344","tag_name":null},{"calculator_name":" \u043a\u0430\u043b\u044c\u043a\u0443\u043b\u044f\u0442\u043e\u0440 \u0437\u0430\u043a\u043e\u043d\u0430 \u041e\u043c\u0430","cat_name":"Physics","calculator_slug":"kalkulyator-zakona-oma","calculator_id":"345","tag_name":null},{"calculator_name":"Ohmsch Gesetz Rechner","cat_name":"Physics","calculator_slug":"ohmsch-gesetz-rechner","calculator_id":"346","tag_name":null},{"calculator_name":"Calcolatrice gpa","cat_name":"Informative","calculator_slug":"calcolatrice-gpa","calculator_id":"347","tag_name":null},{"calculator_name":"Angka Penting kalkulator","cat_name":"Math","calculator_slug":"sig-fig-kalkulator","calculator_id":"348","tag_name":null},{"calculator_name":"Kalkulator liczb znaczacych","cat_name":"Math","calculator_slug":"kalkulator-liczb-znaczacych","calculator_id":"349","tag_name":null},{"calculator_name":"Dpi Rechner","cat_name":"Informative","calculator_slug":"dpi-rechner","calculator_id":"350","tag_name":null},{"calculator_name":"Kalkulator Odchylenia Standardowego","cat_name":"Math","calculator_slug":"kalkulator-odchylenia-standardowego","calculator_id":"351","tag_name":null},{"calculator_name":"\u043a\u0430\u043b\u044c\u043a\u0443\u043b\u044f\u0442\u043e\u0440 \u0441\u0442\u0430\u043d\u0434\u0430\u0440\u0442\u043d\u043e\u0433\u043e \u043e\u0442\u043a\u043b\u043e\u043d\u0435\u043d\u0438\u044f","cat_name":"Math","calculator_slug":"kalkulyator-standartnogo-otkloneniya","calculator_id":"352","tag_name":null},{"calculator_name":"Kalkulator pembulatan","cat_name":"Math","calculator_slug":"kalkulator-pembulatan","calculator_id":"358","tag_name":null},{"calculator_name":"Calculadora de propor\u00e7\u00e3o","cat_name":"Math","calculator_slug":"calculadora-de-proporcao","calculator_id":"359","tag_name":null},{"calculator_name":"Calculadora Tdee","cat_name":"Fitness","calculator_slug":"calculadora-tdee","calculator_id":"360","tag_name":null},{"calculator_name":"Fraction to decimal","cat_name":"Conversion","calculator_slug":"fraction-to-decimal","calculator_id":"361","tag_name":null}];
+				var dataTwo = [];
+				var val = $(search_id).val();
+				let re = new RegExp(val, "gi");
+				for (let i = 0; i < x.length; i++) {
+					var d = re.exec(x[i].tag_name);
+					if (d && dataTwo.length <= 10) {
+						dataTwo.push(x[i]);
+					}
+				}
+				var data = dataTwo;
+				if (know == '') {
+					if (val == "") {
+						$(search_result_class).hide();
+						$('.navlistOverlay').hide();
+						return false;
+					}
+					$(search_result_class).show();
+					$(search_result_class).html("");
+					$.each(data, function(index, toole) {
+						val = val.toUpperCase();
+						$("#searchSec").addClass("searched");
+						var href = toole.calculator_slug;
+						var re = new RegExp(val, "gi");
+						var tooleName = toole.calculator_name.replace(re, "<strong>" + val + "</strong>");
+						$(search_result_class).append('<a class="d-block search-cal" href="https://www.calculators.tech/' + href + '"><span class="match px-2">' + tooleName.toUpperCase() + '<span class="cat-name d-block">' + toole.cat_name + '</span></span></a>');
+					});
+
+					var li;
+					if (search_result_class == '.banner-search-result') {
+						$('#searchInput-banner').focus(function() {
+							$(search_result_class).show();
+						});
+						li = $('#showbanner-result a');
+					} else if (search_result_class == '.search-results') {
+						$('#searchInput').focus(function() {
+							$(search_result_class).show();
+						});
+						li = $('#showtop-result a');
+					}
+					var liSelected;
+					$(window).keydown(function(e) {
+						if (e.which === 40) {
+							if (liSelected) {
+								liSelected.removeClass('selected');
+								next = liSelected.next();
+								if (next.length > 0) {
+									liSelected = next.addClass('selected');
+								} else {
+									liSelected = li.eq(0).addClass('selected');
+								}
+							} else {
+								liSelected = li.eq(0).addClass('selected');
+							}
+						} else if (e.which === 38) {
+							if (liSelected) {
+								liSelected.removeClass('selected');
+								next = liSelected.prev();
+								if (next.length > 0) {
+									liSelected = next.addClass('selected');
+								} else {
+									liSelected = li.last().addClass('selected');
+								}
+							} else {
+								liSelected = li.last().addClass('selected');
+							}
+						}
+					});
+					$(window).keypress(function(e) {
+						if (e.which === 13) {
+							if (search_result_class == '.banner-search-result') {
+								$("#showbanner-result a.selected")[0].click();
+							} else if (search_result_class == '.search-results') {
+								$("#showtop-result a.selected")[0].click();
+							}
+						}
+					})
+				} else if (know == 'knowledge') {
+					$(search_result_class).show();
+					console.log(resp);
+					$.each(resp, function(index, tool) {
+						console.log(tool);
+						$("#search-banner-sec").addClass("searched");
+						var href = tool.resource_slug;
+						var re = new RegExp(val, "gi");
+						console.log(href);
+						console.log(re);
+						var toolName = tool.resource_title.replace(re, "<strong>" + val + "</strong>");
+						console.log(toolName);
+						$(search_result_class).append('<a class="d-block search-cal" href="https://www.calculators.tech/knowledge/' + href + '"><span class="match px-2">' + toolName + '<span class="cat-name d-block">(' + tool.cat_name + ')</span></span></a>');
+					});
+
+					var li;
+					if (search_result_class == '.banner-search-result') {
+						$('#searchInput-banner').focus(function() {
+							$(search_result_class).show();
+						});
+						li = $('#showbanner-result a');
+					} else if (search_result_class == '.search-results') {
+						$('#searchInput').focus(function() {
+							$(search_result_class).show();
+						});
+						li = $('#showtop-result a');
+					}
+					var liSelected;
+					$(window).keydown(function(e) {
+						if (e.which === 40) {
+							if (liSelected) {
+								liSelected.removeClass('selected');
+								next = liSelected.next();
+								if (next.length > 0) {
+									liSelected = next.addClass('selected');
+								} else {
+									liSelected = li.eq(0).addClass('selected');
+								}
+							} else {
+								liSelected = li.eq(0).addClass('selected');
+							}
+						} else if (e.which === 38) {
+							if (liSelected) {
+								liSelected.removeClass('selected');
+								next = liSelected.prev();
+								if (next.length > 0) {
+									liSelected = next.addClass('selected');
+								} else {
+									liSelected = li.last().addClass('selected');
+								}
+							} else {
+								liSelected = li.last().addClass('selected');
+							}
+						}
+					});
+					$(window).keypress(function(e) {
+						if (e.which === 13) {
+							if (search_result_class == '.banner-search-result') {
+								$("#showbanner-result a.selected")[0].click();
+							} else if (search_result_class == '.search-results') {
+								$("#showtop-result a.selected")[0].click();
+							}
+						}
+					})
+				}
+				return false;
+				if (!know) know = "";
+				showResults();
+
+				function showResults() {
+					var val = $(search_id).val();
+					$.ajax({
+						url: "https://www.calculators.tech/ajaxReqests/search_results_2",
+						type: "post",
+						data: {
+							val: val,
+							know: know
+						},
+						dataType: "json",
+						beforeSend: function() {},
+						success: function(resp) {
+							var html = '';
+							if (resp.fail) {
+
+								html = resp.fail;
+
+								$(search_result_class).show();
+								$(search_result_class).html(html);
+
+							} else {
+								$(search_result_class).html("");
+								$(search_result_class).hide();
+
+								if (val.length < 2) {
+									return false;
+								}
+
+								$(search_result_class).show();
+								if (know == '') {
+									$(search_result_class).show();
+									$.each(resp, function(index, tool) {
+										$("#searchSec").addClass("searched");
+										var href = tool.calculator_slug;
+										var re = new RegExp(val, "gi");
+										var toolName = tool.calculator_name.replace(re, "<strong>" + val + "</strong>");
+										$(search_result_class).append('<a class="d-block search-cal" href="https://www.calculators.tech/' + href + '"><span class="match px-2">' + toolName + '<span class="cat-name d-block">(' + tool.cat_name + ')</span></span></a>');
+									});
+
+									var li;
+									if (search_result_class == '.banner-search-result') {
+										$('#searchInput-banner').focus(function() {
+											$(search_result_class).show();
+										});
+										li = $('#showbanner-result a');
+									} else if (search_result_class == '.search-results') {
+										$('#searchInput').focus(function() {
+											$(search_result_class).show();
+										});
+										li = $('#showtop-result a');
+									}
+									var liSelected;
+									$(window).keydown(function(e) {
+										if (e.which === 40) {
+											if (liSelected) {
+												liSelected.removeClass('selected');
+												next = liSelected.next();
+												if (next.length > 0) {
+													liSelected = next.addClass('selected');
+												} else {
+													liSelected = li.eq(0).addClass('selected');
+												}
+											} else {
+												liSelected = li.eq(0).addClass('selected');
+											}
+										} else if (e.which === 38) {
+											if (liSelected) {
+												liSelected.removeClass('selected');
+												next = liSelected.prev();
+												if (next.length > 0) {
+													liSelected = next.addClass('selected');
+												} else {
+													liSelected = li.last().addClass('selected');
+												}
+											} else {
+												liSelected = li.last().addClass('selected');
+											}
+										}
+									});
+									$(window).keypress(function(e) {
+										if (e.which === 13) {
+											if (search_result_class == '.banner-search-result') {
+												$("#showbanner-result a.selected")[0].click();
+											} else if (search_result_class == '.search-results') {
+												$("#showtop-result a.selected")[0].click();
+											}
+										}
+									})
+								} else if (know == 'knowledge') {
+									$(search_result_class).show();
+									console.log(resp);
+									$.each(resp, function(index, tool) {
+										console.log(tool);
+										$("#search-banner-sec").addClass("searched");
+										var href = tool.resource_slug;
+										var re = new RegExp(val, "gi");
+										console.log(href);
+										console.log(re);
+										var toolName = tool.resource_title.replace(re, "<strong>" + val + "</strong>");
+										console.log(toolName);
+										$(search_result_class).append('<a class="d-block search-cal" href="https://www.calculators.tech/knowledge/' + href + '"><span class="match px-2">' + toolName + '<span class="cat-name d-block">(' + tool.cat_name + ')</span></span></a>');
+									});
+
+									var li;
+									if (search_result_class == '.banner-search-result') {
+										$('#searchInput-banner').focus(function() {
+											$(search_result_class).show();
+										});
+										li = $('#showbanner-result a');
+									} else if (search_result_class == '.search-results') {
+										$('#searchInput').focus(function() {
+											$(search_result_class).show();
+										});
+										li = $('#showtop-result a');
+									}
+									var liSelected;
+									$(window).keydown(function(e) {
+										if (e.which === 40) {
+											if (liSelected) {
+												liSelected.removeClass('selected');
+												next = liSelected.next();
+												if (next.length > 0) {
+													liSelected = next.addClass('selected');
+												} else {
+													liSelected = li.eq(0).addClass('selected');
+												}
+											} else {
+												liSelected = li.eq(0).addClass('selected');
+											}
+										} else if (e.which === 38) {
+											if (liSelected) {
+												liSelected.removeClass('selected');
+												next = liSelected.prev();
+												if (next.length > 0) {
+													liSelected = next.addClass('selected');
+												} else {
+													liSelected = li.last().addClass('selected');
+												}
+											} else {
+												liSelected = li.last().addClass('selected');
+											}
+										}
+									});
+									$(window).keypress(function(e) {
+										if (e.which === 13) {
+											if (search_result_class == '.banner-search-result') {
+												$("#showbanner-result a.selected")[0].click();
+											} else if (search_result_class == '.search-results') {
+												$("#showtop-result a.selected")[0].click();
+											}
+										}
+									})
+								}
+							}
+						}
+					});
+				}
+
+				function clearText(text) {
+					myStr = text.toLowerCase();
+					myStr = myStr.replace(/ /g, "");
+					myStr = myStr.replace(/[^a-zA-Z0-9]+/g, "");
+					myStr = myStr.replace(/(\s)+/g, "");
+					return myStr;
+				}
+				$(document).mouseup(function(e) {
+					var container = $(search_container_id);
+
+					if (!container.is(e.target) // if the target of the click isn't the container...
+						&&
+						container.has(e.target).length === 0) // ... nor a descendant of the container
+					{
+						$("#searchSec").removeClass("searched");
+						$(search_result_class).hide();
+					}
+				});
+			}
+
+
+			function docReady(fn) {
+				"complete" === document.readyState || "interactive" === document.readyState ? setTimeout(fn, 1) : document.addEventListener("DOMContentLoaded", fn)
+			}
+
+			// Load Ads After Page Load
+			function load_ads(ads_ids) {
+				if (Array.isArray(ads_ids)) {
+					// setTimeout(() => {
+					ads_ids.map(aid => {
+						var ad = get_ads[aid];
+						// console.log($('#'+ad[0]).length);
+						if ($('#' + ad[0]).length > 0) {
+							$('#' + ad[0]).append(ad[1]);
+							$('#' + ad[0]).css('background', 'none');
+						} else {
+							console.log("this is empty");
+						}
+					});
+					// }, 3000);
+				}
+			}
+
+			// Load files After Page Load
+			function loadFiles(links = [], time = 1) {
+				if (Array.isArray(links)) {
+					setTimeout(() => {
+						links.map(link => {
+							$('body').append('<script src="' + link + '"><\/script>')
+							// console.log('object');
+							// $('.font-weight-bold').append('ddd');
+						})
+					}, 2000);
+				}
+			}
+
+			var jFiles = [];
+
+			
+			const get_Ad = {
+				headerAd: '<script async src="https:/\/\pagead2.googlesyndication.com/\pagead/\js/\adsbygoogle.js"></\script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9589054196797961" data-ad-slot="9947399751" data-ad-format="auto" data-full-width-responsive="true"></\ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</\script>',
+				beforBtnAd: '<script async src="https:/\/\pagead2.googlesyndication.com/\pagead/\js/\adsbygoogle.js"></\script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9589054196797961" data-ad-slot="9227174059" data-ad-format="auto" data-full-width-responsive="true"></\ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</\script>',
+				afterBtnAd: '<script async src="https:/\/\pagead2.googlesyndication.com/\pagead/\js/\adsbygoogle.js"></\script><ins class="adsbygoogle"style="display:block" data-ad-client="ca-pub-9589054196797961" data-ad-slot="3326019262" data-ad-format="auto" data-full-width-responsive="true"></\ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</\script>',
+				afterResltAd: '<script async src="https:/\/\pagead2.googlesyndication.com/\pagead/\js/\adsbygoogle.js"></\script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9589054196797961" data-ad-slot="6440295433" data-ad-format="auto" data-full-width-responsive="true"></\ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</\script>',
+				afterResltAdbanner: '<script async src="https:/\/\pagead2.googlesyndication.com/\pagead/\js/\adsbygoogle.js"></\script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9589054196797961" data-ad-slot="2692622116" data-ad-format="auto" data-full-width-responsive="true"></\ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</\script>',
+			}
+
+							const get_ads = {
+					thx_header: ['thx-header', get_Ad['headerAd']],
+					thx_before_button: ['thx_before_button', get_Ad['beforBtnAd']],
+					thx_after_button: ['thx_after_button', get_Ad['afterBtnAd']],
+					thx_after_result_banner: ['thx_after_result_banner', get_Ad['afterResltAdbanner']],
+					thx_after_result: ['thx_after_result', get_Ad['afterResltAd']],
+					sidebarStickyThx1: ['sidebarStickyThx1', get_Ad['afterResltAd']],
+					sidebarStickyThx2: ['sidebarStickyThx2', get_Ad['headerAd']],
+					geolocation: ['geolocation', get_Ad['geolocationa']],
+				}
+			
+			docReady(() => {
+
+									load_ads(['thx_header', 'thx_before_button', 'thx_after_button', 'thx_after_result', 'thx_after_result_banner', 'sidebarStickyThx1', 'sidebarStickyThx2']);
+								_ipgeolocation.getGeolocation(handleResponse, "37e389c36dba47c9861f437d2c88097d");
+
+				function handleResponse(response) {
+					$('#ip_address').val(response.ip);
+				}
+
+				// load Files
+				// loadFiles(jFiles);
+
+			});
+		</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100076546-1"></script>
+<script>
+				window.dataLayer = window.dataLayer || [];
+
+				function gtag() {
+					dataLayer.push(arguments);
+				}
+				gtag('js', new Date());
+
+				gtag('config', 'UA-100076546-1');
+			</script>
+<script>
+			(function($) {
+				$('.js-share-btn').click(function(e) {
+					e.preventDefault();
+					var href = $(this).attr('href');
+					windowPopup(href, 550, 285);
+				});
+
+			})(jQuery);
+			$(document).ready(function() {
+				$("#home-popular .popular-calculaor-box").on("click", function() {
+					var url = $(this).find("a").attr("href");
+					window.location.href = url;
+				});
+			});
+		</script>
+<script>
+			// $(window).on('resize',function(){
+			if ($(window).width() >= 768) {
+				$('.contact-custom-class').removeClass('flex-column-reverse');
+			} else {
+				$('.contact-custom-class').addClass('flex-column-reverse');
+			}
+			// })
+			// Back to top Button
+			var btn = $('#btn-btt');
+
+			$.fn.isOnScreen = function() {
+				var win = $(window);
+				var viewport = {
+					top: win.scrollTop(),
+					left: win.scrollLeft()
+				};
+				viewport.right = viewport.left + win.width();
+				viewport.bottom = viewport.top + win.height();
+				var bounds = this.offset();
+				// console.log(bounds);
+				bounds.right = bounds.left + this.outerWidth();
+				bounds.bottom = bounds.top + this.outerHeight();
+				return !(
+					viewport.right < bounds.left ||
+					viewport.left > bounds.right ||
+					viewport.bottom < bounds.top ||
+					viewport.top > bounds.bottom
+				);
+			};
+
+			$(window).scroll(function() {
+				if ($(window).scrollTop() > 300) {
+					btn.addClass('show');
+					$(".adsbygoogle").each(function() {
+						if ($(this).isOnScreen()) {
+							btn.removeClass('show');
+						}
+					});
+
+
+
+				} else {
+					btn.removeClass('show');
+				}
+			});
+
+			btn.on('click', function(e) {
+				e.preventDefault();
+				$('html, body').animate({
+					scrollTop: 0
+				}, '300');
+			});
+		</script>
+<script src="https://www.calculators.tech/assets/lib/js/bootstrap.bundle.min.js"></script>
+
+<div class="modal fade model-alert show" id="alertModel" tabindex="-1" role="dialog" aria-labelledby="alertModelLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content border-0 text-center">
+<div class="modal-header py-4 bg-danger text-white text-center">
+<div class="modal-title w-100" id="alertModelLabel"><i class="fa fa-exclamation-triangle"></i></div>
+</div>
+<div class="modal-body font-size-xl font-weight-light">
+<p class="msg">Please Fill aleat 1 row</p>
+<button type="button" class="btn btn-light" data-dismiss="modal"> <i class="fa fa-times"></i> Close</button>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-backdrop fade" style="display:none"></div>
+ </main>
+
+
+<script type="text/javascript" src="https://www.calculators.tech/assets/lib/js/custome-script.js?ver=2.5.9"></script>
+<script type="application/javascript">
+			jQuery(document).ready(function($) {
+				$("#feedback").on("click", function() {
+					// $(".model-bg").fadeIn(600);
+					$(".model-box").fadeIn(600);
+				});
+				$(".close-model").on("click", function() {
+					// $(".model-bg").fadeOut(600);
+					$(".model-box").fadeOut(600);
+				});
+				$(".model-bg").on("click", function() {
+					// $(".model-bg").fadeOut(600);
+					$(".model-box").fadeOut(600);
+				});
+			})
+		</script>
+
+
+<div class="modal fade" id="feedbackmodal" tabindex="-1" role="dialog" aria-labelledby="feedbackmodalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<span class="model-heading bg-primary d-block p-2 text-white text-center text-md-l text-uppercase" style="    border-top-left-radius: 5px;     border-top-right-radius: 5px;">
+Send us your feedback!
+<div class="d-inline-block float-right mr-2 text-white close-model btn p-0" data-dismiss="modal"><i class="fas fa-times"></i></div>
+</span>
+<input type="hidden" value="Ascii to Decimal" id="cal_title">
+<div class="model-body">
+<div class="form-group px-3">
+<textarea id="feedbackBody" class="form-control green-bdr mb-3 mt-3" style="height:90px;" placeholder="Suggestions to improve Ascii to Decimal?"></textarea>
+<input type="email" name="user_email" id="user_email" class="form-control mt-3" placeholder="Enter email to get Response">
+<p class="text-center mt-2">
+<button type="button" id="sendfeedback" class="btn scroll btn-primary btn-sm">
+<span id="submit-spinner2"><i class="fa fa-send"></i> Send feedback <i class="far fa-paper-plane ml-1"></i></span>
+<div class="loading loading-overlay2">Loading…</div>
+</button>
+</p>
+<div id="responce_email"></div>
+<p class="text-center">Need some help? you can <a href="https://www.calculators.tech/contact-us" target="_blank">contact us</a> anytime.</p>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+			$(document).on("click", ".emoji-feed-label", function(event) {
+				event.preventDefault();
+				var emoji_rating_for = $(this).attr('for');
+
+				var emoji_rating = $("#" + emoji_rating_for).val();
+				var href = location.href;
+				var lastseg = href.match(/([^\/]*)\/*$/)[1];
+
+				var feedback = localStorage.getItem(lastseg);
+				if (feedback) {
+
+					$("#containerpop").show();
+					$("#containerpop .message").text("Feedback already submitted!");
+					$("#containerpop .yes").unbind().click(function() {
+						$("#containerpop").hide();
+					});
+					$("#containerpop").fadeIn("slow");
+					setTimeout(function() {
+						$('#containerpop').fadeOut('600');
+					}, 1000);
+
+				} else {
+					if (feedback === null) {
+						// Set cookie using our custom function
+						localStorage.setItem(lastseg, emoji_rating_for);
+						$.ajax({
+							url: "https://www.calculators.tech/Frontend/emojifeedback",
+							method: 'POST',
+							beforeSend: function() {
+								showOverlay2();
+							},
+							data: {
+								lastseg:lastseg,
+								emoji_rating: emoji_rating
+							},
+						}).fail(function() {
+							hideOverlay2();
+							alert('error');
+
+						}).done(function(result) {
+
+							$("#containerpop").show();
+							$("#containerpop .message").text("Thank You! Your feedback is submitted.");
+							$("#containerpop .yes").unbind().click(function() {
+								$("#containerpop").hide();
+							});
+							$("#containerpop").fadeIn("slow");
+							setTimeout(function() {
+								$('#containerpop').fadeOut('600');
+							}, 1000);
+							
+
+						});
+					}
+				}
+
+			});
+
+			jQuery(document).ready(function($) {
+
+				$(document).on("click", "#sendfeedback", function(event) {
+
+					var text_area_val = $("#feedbackBody").val();
+					var user_email = $("#user_email").val();
+					var cal_title = $("#cal_title").val();
+					var cal_id = 203;
+					var cal_slug = "ascii-to-decimal";
+
+					$("#responce_email").html("");
+					if (text_area_val == "" && user_email == "") {
+						$("#feedbackBody").addClass("border-danger");
+						$("#user_email").addClass("border-danger");
+						return false;
+					}
+
+					$("#feedbackBody").removeClass("border-danger");
+
+					$.ajax({
+						url: "https://www.calculators.tech/Frontend/feedback",
+						method: 'POST',
+						beforeSend: function() {
+							showOverlay2();
+						},
+						data: {
+							msg: text_area_val,
+							user_email: user_email,
+							title: cal_title,
+							cal_slug: cal_slug
+						},
+					}).fail(function() {
+						hideOverlay2();
+
+					}).done(function(result) {
+						hideOverlay2();
+						$("#responce_email").html('<p class="bg-light p-2 text-md text-success">Thank you for feedback</p>');
+						$("#feedbackBody , #sendfeedback").remove();
+					});
+					// (./end) Ajax Request
+				});
+				// ./end Calculator action 
+			});
+		</script>
+
+</body>
+<script>
+	jQuery(document).ready(function($) {
+		$(".fixed-ad-section").on("click", function() {
+			$(".position-fixed-ad").hide();
+			$(this).hide();
+		});
+	});
+
+	function getParentUrl() {
+		var isInIframe = (parent !== window),
+			parentUrl = null;
+		if (isInIframe) {
+			parentUrl = document.referrer;
+		}
+
+		return parentUrl;
+	}
+	var ParentUrl = getParentUrl();
+	ParentUrl = encodeURI(ParentUrl);
+
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("demo").innerHTML = this.responseText;
+		}
+	};
+	var c = "Ascii to Decimal";
+	var sl = "ascii-to-decimal";
+	// $.ajax({
+	// 	method: "POST",
+	// 	url: "https://www.calculators.tech/frontend/wp_wigdet_info",
+	// 	data: {
+	// 		url: ParentUrl,
+	// 		name: c
+	// 	},
+	// 	success: function(response) {
+	// 		var parentUrl2 = ParentUrl;
+	// 		var curll = parentUrl2.search("https://www.calculators.tech/");
+	// 		if (ParentUrl != 'null') {
+	// 			if (curll == -1) {
+	// 				var prem = $("#chkprem").val();
+	// 				if (prem == 'premium') {
+	// 					if (response != 'Url or Name already exist') {
+	// 						$("#dbody").html('<div class="alert border-danger text-center my-4 mx-auto col-sm-4"><h4 class="text-danger"><b>Message for Webmaster!</b></h4><p class="text-dark"><b>Please Note:</b> Register your by website on <a target="_blank" href="https://www.calculators.tech/">calculators.tech</a> clicking on bellow button to Activate this Calculator Widget.</p><a target="_blank" href="https://www.calculators.tech/widget_register/' + sl + '" class="btn text-white shadow  btn-danger">Register Now</a></div>');
+	// 					}
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// });
+</script>
+</html>
